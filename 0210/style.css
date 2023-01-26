@@ -15,12 +15,14 @@ span {
     color: rgb(68, 84, 106);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
+    line-height: 0;
 }
 p{
     font-size: 48px;
     color: rgb(68, 84, 106);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 500; 
+    line-height: 0;
 }
 button {
     background-color: #fff;
@@ -34,15 +36,14 @@ button {
 .wrap {
     justify-content: center;
     flex-direction: column;
-    width: 80%;
-    height: 100%;
     text-align: center;
+    margin: 0 auto;
 }
 
 
 .background {
  position:absolute;
- top: 863px;
+ top: 703px;
  left: 171px;
  width: 553.5px;
 }
@@ -59,7 +60,7 @@ button {
 }
 
 .bubble {
-   animation: bubble-animation 15000ms ease-in;
+   animation: bubble-animation 7000ms ease-in;
    animation-iteration-count: infinite;
 }
 
