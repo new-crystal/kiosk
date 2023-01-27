@@ -17,7 +17,7 @@ const img5 = document.querySelector(".fourth-3")
 const bubbles = document.querySelectorAll(".bubble")
 let signUp = false;
 
-btnBox.addEventListener("click", (e)=>{onClickBtn(e)})
+btnBox.addEventListener("touchstart", (e)=>{onClickBtn(e)})
 
 function onClickBtn(event){
  if(event.target.className === "home"){
@@ -115,13 +115,13 @@ function makeSignUp(){
     const iframe = document.createElement("iframe")
     if(signUp === true){ 
         iframe.setAttribute("class", "iframe")
-        iframe.setAttribute("src", "https://www.organon.com/korea/")
-        iframe.setAttribute("width", "800")
-        iframe.setAttribute("height", "700")
+        iframe.setAttribute("src", "http://into-on.com/")
+        iframe.setAttribute("width", "900")
+        iframe.setAttribute("height", "1000")
         iframe.setAttribute("scrolling","yes")
        container.appendChild(iframe)
-    }else if(signUp === false && container.childNodes[11] !== undefined){
-        container.childNodes[11].remove()
+    }else if(signUp === false && container.childNodes[109] !== undefined){
+        container.childNodes[109].remove()
     }
 }
 

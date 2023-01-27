@@ -134,6 +134,10 @@ button {
     flex-direction: column;
 }
 
+.header-logo {
+    margin-top: 100px;
+}
+
 .computer {
     position:relative;
     top: 220px;
@@ -141,8 +145,8 @@ button {
 
 .background {
  position:absolute;
- top: 547px;
- left: 371px;
+ top: 627px;
+ left: 373px;
  width: 553.5px;
 }
 
@@ -153,7 +157,8 @@ button {
 }
 
 .first-bottom-logo{
-  margin-top: 100px;}
+  margin-top: 400px;
+}
 
 
 /* second-page */
@@ -181,6 +186,7 @@ button {
 .second-logo {
     position: relative;
     top: 100px;
+    left: 250px;
 }
 
 .third-page {
