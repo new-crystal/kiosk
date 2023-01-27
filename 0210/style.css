@@ -117,7 +117,7 @@ button {
   left:50%;
   justify-content: center;
   flex-direction: column;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -50%);
 }
 
 .homepage{

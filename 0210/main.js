@@ -74,18 +74,7 @@ function gofourthPage(){
 
 function gofirstPage(time){
     if(time === true){
-        img3.style.animation = ""
-        img4.style.animation = ""
-        img5.style.animation = ""
-        secondPage.classList.remove("page-visible")
-        secondPage.classList.add("page-hidden")
-        thirdPage.classList.remove("page-visible")
-        thirdPage.classList.add("page-hidden")
-        fourthPage.classList.remove("page-visible")
-        fourthPage.classList.add("page-hidden")
-        homePage.classList.remove("page-hidden")
-        homePage.classList.add("page-visible")
-         homePage.classList[1] === "page-visible" && goSecondPage();
+        window.location.reload()
     }else if (time === false){
         setTimeout(()=>{
             img3.style.animation = ""
