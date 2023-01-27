@@ -17,6 +17,7 @@ span {
     color: rgb(68, 84, 106);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
+    line-height: 0;
 }
 p{
     font-size: 48px;
@@ -44,6 +45,7 @@ button {
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    margin: 0 auto;
 }
 
 .inner-wrap {
@@ -82,8 +84,8 @@ button {
 margin-top: 450px;
 }
 .first-bottom-logo{
-    margin-top: 100px;
-}
+  margin-top: 100px;}
+
 
 /* second-page */
 .page-hidden {

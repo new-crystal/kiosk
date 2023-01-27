@@ -1,6 +1,6 @@
 "use strict";
 
-const wrap = document.querySelector(".wrap")
+const wrap = document.querySelector(".wrap");
 const wrapRect = wrap.getBoundingClientRect();
 const home = document.querySelector("#home")
 const signUp = document.querySelector("#sign-up")
