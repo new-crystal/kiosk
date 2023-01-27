@@ -5,6 +5,8 @@ const homePage = document.querySelector(".homepage")
 const secondPage = document.querySelector(".second-page")
 const thirdPage = document.querySelector(".third-page")
 const fourthPage = document.querySelector(".fourth-page")
+const text1 = document.querySelector(".first-animation-down")
+const shadow = document.querySelector(".shadow")
 const btnBox = document.querySelector(".btn-box")
 const texts = document.querySelectorAll(".text")
 const img1 = document.querySelector(".third-1")
@@ -12,6 +14,7 @@ const img2 = document.querySelector(".third-2")
 const img3 = document.querySelector(".fourth-1")
 const img4 = document.querySelector(".fourth-2")
 const img5 = document.querySelector(".fourth-3")
+const bubbles = document.querySelectorAll(".bubble")
 let signUp = false;
 
 btnBox.addEventListener("click", (e)=>{onClickBtn(e)})
@@ -25,12 +28,20 @@ function onClickBtn(event){
 }
 
 function init(){
+    text1.style.animation = "fadeInDown 1s"
+    shadow.style.animation = "fadeInUp 1s"
     goSecondPage();
 }
 
 
 function goSecondPage(){
     setTimeout(()=>{
+        text1.style.animation = "";
+        shadow.style.animation = "";
+        bubbles.forEach((bubble)=>{
+            bubble.classList.remove("page-visible")
+            bubble.classList.add("page-hidden")
+        })
         homePage.classList.remove("page-visible")
         homePage.classList.add("page-hidden")
         secondPage.classList.remove("page-hidden")
@@ -77,6 +88,12 @@ function gofirstPage(time){
         window.location.reload()
     }else if (time === false){
         setTimeout(()=>{
+            bubbles.forEach((bubble)=>{
+                bubble.classList.add("page-visible")
+                bubble.classList.remove("page-hidden")
+            })
+            text1.style.animation = "fadeInDown 1s"
+            shadow.style.animation = "fadeInUp 1s"
             img3.style.animation = ""
             img4.style.animation = ""
             img5.style.animation = ""

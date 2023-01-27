@@ -132,7 +132,6 @@ button {
 .first-animation-up {
     justify-content: center;
     flex-direction: column;
-    animation:  fadeInUp 1s;
 }
 
 .computer {
