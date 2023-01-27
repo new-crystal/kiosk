@@ -2,43 +2,60 @@
 
 const wrap = document.querySelector(".wrap");
 const wrapRect = wrap.getBoundingClientRect();
-const home = document.querySelector("#home");
-const signUp = document.querySelector("#sign-up");
+const home = document.querySelector("#home")
+const signUp = document.querySelector("#sign-up")
+const homePage = document.querySelector(".homepage")
+const secondPage = document.querySelector(".second-page")
+const thirdPage = document.querySelector(".third-page")
+const fourthPage = document.querySelector(".fourth-page")
 
-function init() {
-  if (window.location.pathname === "/0210/") {
-    addBubble();
-    goSecondPage();
-  }
+function init(){
+   // goSecondPage();
 }
 
-function addBubble() {
-  const x1 = 0;
-  const y1 = 0;
-  const x2 = wrapRect.width;
-  const y2 = wrapRect.height;
+function goSecondPage(){
+    setTimeout(()=>{
+        homePage.classList.remove("page-visible")
+        homePage.classList.add("page-hidden")
+        secondPage.classList.remove("page-hidden")
+        secondPage.classList.add("page-visible")
+        secondPage.classList[1] === "page-visible" && goThirdPage();
+    },7000)
+}  
 
-  for (let i = 0; i < 5; i++) {
-    const bubble = document.createElement("img");
-    bubble.setAttribute("class", "bubble");
-    bubble.setAttribute("src", "./img/bubble.png");
-    bubble.style.position = "absolute";
-    const x = randomNumber(x1, x2);
-    const y = randomNumber(y1, y2);
-    bubble.style.left = `${x}px`;
-    bubble.style.top = `${y}px`;
-    wrap.appendChild(bubble);
-  }
+function goThirdPage(){
+    setTimeout(()=>{
+        secondPage.classList.remove("page-visible")
+        secondPage.classList.add("page-hidden")
+        thirdPage.classList.remove("page-hidden")
+        thirdPage.classList.add("page-visible")
+        thirdPage.classList[1] === "page-visible" && gofourthPage();
+    },7000)
 }
 
-function randomNumber(min, max) {
-  return Math.random() * (max - min) + min;
+function gofourthPage(){
+    setTimeout(()=>{
+        thirdPage.classList.remove("page-visible")
+        thirdPage.classList.add("page-hidden")
+        fourthPage.classList.remove("page-hidden")
+        fourthPage.classList.add("page-visible")
+        fourthPage.classList[1] === "page-visible" && gofirstPage();
+    },7000)
 }
 
-function goSecondPage() {
-  setTimeout(() => {
-    //window.location.pathname = "/0210/second.html";
-  }, 7000);
+function gofirstPage(){
+    setTimeout(()=>{
+    secondPage.classList.remove("page-visible")
+    secondPage.classList.add("page-hidden")
+    thirdPage.classList.remove("page-visible")
+    thirdPage.classList.add("page-hidden")
+    fourthPage.classList.remove("page-visible")
+    fourthPage.classList.add("page-hidden")
+    homePage.classList.remove("page-hidden")
+    homePage.classList.add("page-visible")
+     homePage.classList[1] === "page-visible" && goSecondPage();
+    },7000)
 }
+init()
 
-init();
+home.addEventListener("touchstart", () => {gofirstPage()})
