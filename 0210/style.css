@@ -1,8 +1,10 @@
 body {
+    align-items: center;
+    margin: 0;
     width: 1080px;
     height: 1920px;
-    background: rgb(255,238,255);
-    background: linear-gradient(90deg, rgba(255,238,255,1) 0%, rgba(253,233,241,1) 64%, rgba(255,226,239,1) 100%);
+    background: linear-gradient(180deg, rgba(251,218,234,1) 0%, rgba(253,233,241,1) 100%, rgba(255,226,239,0) 100%);
+    text-align: center;
 }
 
 div {
@@ -21,87 +23,84 @@ p{
     color: rgb(68, 84, 106);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 500; 
+    line-height: 0;
 }
 button {
+    width: 400px;
+    height: 100px;
     background-color: #fff;
     border: 2px solid rgb(217,217,217);
     color: rgb(68, 84, 106);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 500;
     font-size: 32px;
+    margin: 50px 50px auto 50px;
+    padding: 10px 80px;
+    border-radius: 15px;
 }
 
 .wrap {
+    width: 800px;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
-    height: 100%;
     text-align: center;
 }
 
+.inner-wrap {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  justify-content: center;
+  flex-direction: column;
+  transform: translate(-50%, -40%);
+}
+
+.homepage{
+    justify-content: center;
+    flex-direction: column;
+}
+
+.computer {
+    position:relative;
+    top: 220px;
+}
 
 .background {
  position:absolute;
- top: 863px;
- left: 171px;
+ top: 547px;
+ left: 371px;
  width: 553.5px;
 }
 
+.shadow {
+    position:relative;
+    top: 200px;
+    z-index: -1;
+}
+
+.first-btn-box {
+margin-top: 450px;
+}
 .first-bottom-logo{
-    margin-top: 150px;
-}
-
-@keyframes bubble-animation {
-    100%{
-        top:0px;
-        left:0px;
-    }
-}
-
-.bubble {
-   animation: bubble-animation 15000ms ease-in;
-   animation-iteration-count: infinite;
+    margin-top: 100px;
 }
 
 /* second-page */
-.text-wrap{
-    line-height:0;
+.page-hidden {
+    visibility: hidden;
+}
+
+.page-visible {
+    visibility: visible;
+}
+.second-page{
     align-items: baseline;
     flex-direction: column;
 }
 
-.longBox{
-    padding: 20px;
-    width:570px;
-    height: 40px;
-    background-color: #fff;
-    border-radius: 50px;
-    color: rgb(223,0,112);
+.text {
+    margin-top: 100px;
 }
-
-.shortBox{
-    padding: 20px;
-    width:260px;
-    height: 40px;
-    background-color: #fff;
-    border-radius: 50px;
-    color: rgb(223,0,112);
-}
-
-.title{
-    font-size: 48px;
-    color: rgb(223,0,112);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
-}
-
-.content{
-    font-size: 30px;
-    color: rgb(223,0,112);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 5=700;
-}
-
 .second-bottom {
    position: relative;
    top: 100px;
@@ -111,4 +110,22 @@ button {
 .second-logo {
     position: relative;
     top: 100px;
+}
+
+.third-page {
+    align-items: center;
+    flex-direction: column;
+}
+
+.third-page img {
+    margin: 50px;
+}
+
+.fourth-page {
+    align-items: center;
+    flex-direction: column;
+}
+
+.fourth-page img {
+    margin: 50px;
 }
