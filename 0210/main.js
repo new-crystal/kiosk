@@ -43,10 +43,6 @@ function goSecondPage(){
             bubble.classList.add("page-hidden")
         })
         goNextPage(homePage, secondPage)
-        // homePage.classList.remove("page-visible")
-        // homePage.classList.add("page-hidden")
-        // secondPage.classList.remove("page-hidden")
-        // secondPage.classList.add("page-visible")
         secondPage.classList[1] === "page-visible" && goThirdPage();
         texts.forEach((text)=>{
             text.style.animation = "fadeInleft 1s"
@@ -59,10 +55,7 @@ function goThirdPage(){
         texts.forEach((text)=>{
             text.style.animation = ""
         })
-        secondPage.classList.remove("page-visible")
-        secondPage.classList.add("page-hidden")
-        thirdPage.classList.remove("page-hidden")
-        thirdPage.classList.add("page-visible")
+        goNextPage(secondPage, thirdPage)
         img1.style.animation = "fadeInRight 1s"
         img2.style.animation ="fadeInRight 2s"
         thirdPage.classList[1] === "page-visible" && gofourthPage();
@@ -73,10 +66,7 @@ function gofourthPage(){
     setTimeout(()=>{
         img1.style.animation = ""
         img2.style.animation =""
-        thirdPage.classList.remove("page-visible")
-        thirdPage.classList.add("page-hidden")
-        fourthPage.classList.remove("page-hidden")
-        fourthPage.classList.add("page-visible")
+        goNextPage(thirdPage, fourthPage)
         img3.style.animation = "fadeInUp 1s"
         img4.style.animation = "fadeInUp 2s"
         img5.style.animation = "fadeInUp 3s"
@@ -98,14 +88,7 @@ function gofirstPage(time){
             img3.style.animation = ""
             img4.style.animation = ""
             img5.style.animation = ""
-            secondPage.classList.remove("page-visible")
-            secondPage.classList.add("page-hidden")
-            thirdPage.classList.remove("page-visible")
-            thirdPage.classList.add("page-hidden")
-            fourthPage.classList.remove("page-visible")
-            fourthPage.classList.add("page-hidden")
-            homePage.classList.remove("page-hidden")
-            homePage.classList.add("page-visible")
+            goNextPage(fourthPage, homePage)
              homePage.classList[1] === "page-visible" && goSecondPage();
             },7000)
     }
