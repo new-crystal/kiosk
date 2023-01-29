@@ -42,10 +42,11 @@ function goSecondPage(){
             bubble.classList.remove("page-visible")
             bubble.classList.add("page-hidden")
         })
-        homePage.classList.remove("page-visible")
-        homePage.classList.add("page-hidden")
-        secondPage.classList.remove("page-hidden")
-        secondPage.classList.add("page-visible")
+        goNextPage(homePage, secondPage)
+        // homePage.classList.remove("page-visible")
+        // homePage.classList.add("page-hidden")
+        // secondPage.classList.remove("page-hidden")
+        // secondPage.classList.add("page-visible")
         secondPage.classList[1] === "page-visible" && goThirdPage();
         texts.forEach((text)=>{
             text.style.animation = "fadeInleft 1s"
@@ -123,6 +124,13 @@ function makeSignUp(){
     }else if(signUp === false && container.childNodes[109] !== undefined){
         container.childNodes[109].remove()
     }
+}
+
+function goNextPage(prePage, NextPage){
+    prePage.classList.remove("page-visible")
+    prePage.classList.add("page-hidden")
+    NextPage.classList.remove("page-hidden")
+    NextPage.classList.add("page-visible")
 }
 
 init();
