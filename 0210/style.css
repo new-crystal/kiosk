@@ -1,222 +1,234 @@
 body {
-    align-items: center;
-    margin: 0;
-    width: 1080px;
-    height: 1920px;
-    background: linear-gradient(180deg, rgb(255, 200, 226) 0%, rgba(253,233,241,1) 80%, rgba(255,226,239,0) 100%);
-    text-align: center;
+  align-items: center;
+  margin: 0;
+  width: 1080px;
+  height: 1920px;
+  background: linear-gradient(
+    180deg,
+    rgb(255, 200, 226) 0%,
+    rgba(253, 233, 241, 1) 80%,
+    rgba(255, 226, 239, 0) 100%
+  );
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, -100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
 }
 
 @keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, -100%, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
 }
 
 @keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, 100%, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
 }
 
 @keyframes fadeInleft {
-    0% {
-        opacity: 0;
-        transform: translate3d(100%, 0, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
 }
 
 @keyframes fadeInRight {
-    0% {
-        opacity: 0;
-        transform: translate3d(-100%, 0, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
 }
 
-.fade-in-down{
-    position: relative;
-    animation:  fadeInDown 1s;
+/* 페이지 숨기기 */
+.page-hidden {
+  visibility: hidden;
 }
 
-.fade-in-up {
-    position: relative;
-    animation:  fadeInUp 1s;
-}
-
-.fade-in-left {
-    position: relative;
-    animation:  fadeInLeft 1s;
-}
-.fade-in-right {
-    position: relative;
-    animation:  fadeInRight 1s;
+/* 페이지 보이기 */
+.page-visible {
+  visibility: visible;
 }
 
 div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 span {
-    font-size: 48px;
-    color: rgb(68, 84, 106);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    line-height: 0;
+  font-size: 48px;
+  color: rgb(68, 84, 106);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 0;
 }
-p{
-    font-size: 48px;
-    color: rgb(68, 84, 106);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 500; 
-    line-height: 0;
+p {
+  font-size: 48px;
+  color: rgb(68, 84, 106);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  line-height: 0;
 }
 button {
-    width: 400px;
-    height: 100px;
-    background-color: #fff;
-    border: 2px solid rgb(217,217,217);
-    color: rgb(68, 84, 106);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 32px;
-    margin: 50px 50px auto 50px;
-    padding: 10px 80px;
-    border-radius: 15px;
+  width: 400px;
+  height: 100px;
+  background-color: #fff;
+  border: 2px solid rgb(217, 217, 217);
+  color: rgb(68, 84, 106);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  margin: 50px 50px auto 50px;
+  padding: 10px 80px;
+  border-radius: 15px;
 }
 
+/* first-page */
 .wrap {
-    width: 800px;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    margin: 0 auto;
+  width: 800px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .inner-wrap {
   position: absolute;
   top: 50%;
-  left:50%;
+  left: 50%;
   justify-content: center;
   flex-direction: column;
   transform: translate(-50%, -50%);
 }
 
-.homepage{
-    justify-content: center;
-    flex-direction: column;
+.homepage {
+  justify-content: center;
+  flex-direction: column;
 }
 .first-animation-down {
-    justify-content: center;
-    flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .first-animation-up {
-    justify-content: center;
-    flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .header-logo {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 .computer {
-    position:relative;
-    top: 220px;
+  position: relative;
+  top: 220px;
 }
 
 .background {
- position:absolute;
- top: 627px;
- left: 373px;
- width: 553.5px;
+  position: absolute;
+  top: 547px;
+  left: 373px;
+  width: 553.5px;
 }
 
 .shadow {
-    position:relative;
-    top: 200px;
-    z-index: -1;
+  position: relative;
+  top: 200px;
+  z-index: -1;
 }
 
-.first-bottom-logo{
+.first-bottom-logo {
   margin-top: 400px;
 }
 
-
 /* second-page */
-.page-hidden {
-    visibility: hidden;
-}
-
-.page-visible {
-    visibility: visible;
-}
-.second-page{
-    align-items: baseline;
-    flex-direction: column;
+.second-page {
+  align-items: baseline;
+  flex-direction: column;
 }
 
 .text {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 .second-bottom {
-   position: relative;
-   top: 100px;
-   left: 250px;
+  position: relative;
+  top: 100px;
+  left: 250px;
 }
 
 .second-logo {
-    position: relative;
-    top: 100px;
-    left: 250px;
+  position: relative;
+  top: 100px;
+  left: 250px;
 }
 
+/* third-page */
 .third-page {
-    align-items: center;
-    flex-direction: column;
+  align-items: center;
+  flex-direction: column;
 }
 
 .third-page img {
-    margin: 50px;
+  margin: 50px;
 }
 
+/* fourd-page */
 .fourth-page {
-    align-items: center;
-    flex-direction: column;
+  align-items: center;
+  flex-direction: column;
 }
 
 .fourth-page img {
-    margin: 50px;
+  margin: 50px;
 }
 
+/* iframe */
 .iframe {
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+.close-btn {
+  width: 300px;
+  position: absolute;
+  top: 70%;
+  left: 55%;
+  z-index: 1000;
+}
+
+/* footer */
 .btn-box {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
