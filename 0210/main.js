@@ -98,6 +98,9 @@ function gofourthPage() {
     resetAnimation(img1);
     resetAnimation(img2);
     goNextPage(thirdPage, fourthPage);
+    animation(img3, "fadeInUp", 1);
+    animation(img4, "fadeInUp", 2);
+    animation(img5, "fadeInUp", 3);
     fourthPage.classList[1] === "page-visible" && gofirstPage(false);
   }, 7000);
 }
@@ -146,8 +149,8 @@ function makeSignUp() {
     container.appendChild(closeBtn);
     onClickCloseBtn();
   } else if (signUp === false) {
-    container.children[55].remove();
-    container.children[54].remove();
+    container.children[container.children.length - 2].remove();
+    container.children[container.children.length - 1].remove();
   }
 }
 
@@ -156,8 +159,9 @@ function makeSignUp() {
 function onClickCloseBtn() {
   const closeButton = document.querySelector(".close-btn");
   closeButton.addEventListener("touchstart", () => {
-    container.children[55].remove();
-    container.children[54].remove();
+    container.children[container.children.length - 2].remove();
+    container.children[container.children.length - 1].remove();
+    signUp = false;
   });
 }
 
