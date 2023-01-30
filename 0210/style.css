@@ -67,6 +67,16 @@ body {
   }
 }
 
+/* 페이지 숨기기 */
+.page-hidden {
+  visibility: hidden;
+}
+
+/* 페이지 보이기 */
+.page-visible {
+  visibility: visible;
+}
+
 div {
   display: flex;
   align-items: center;
@@ -100,6 +110,7 @@ button {
   border-radius: 15px;
 }
 
+/* first-page */
 .wrap {
   width: 800px;
   justify-content: center;
@@ -158,13 +169,6 @@ button {
 }
 
 /* second-page */
-.page-hidden {
-  visibility: hidden;
-}
-
-.page-visible {
-  visibility: visible;
-}
 .second-page {
   align-items: baseline;
   flex-direction: column;

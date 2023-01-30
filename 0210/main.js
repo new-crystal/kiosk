@@ -1,12 +1,15 @@
 "use strict";
 
+//페이지 전체
 const container = document.querySelector(".container");
 
+//페이지
 const homePage = document.querySelector(".homepage");
 const secondPage = document.querySelector(".second-page");
 const thirdPage = document.querySelector(".third-page");
 const fourthPage = document.querySelector(".fourth-page");
 
+//애니메이션 요소
 const text1 = document.querySelector(".first-animation-down");
 const shadow = document.querySelector(".shadow");
 const btnBox = document.querySelector(".btn-box");
@@ -20,20 +23,23 @@ const fourthImg = document.querySelector(".fourth-img-box");
 const bubbles = document.querySelectorAll(".bubble");
 const background = document.querySelector(".background");
 
+//배경음악
 const backgroundSound = new Audio("./sound/bg.mp3");
 
+//회원가입 상태 = false
+//true -> 회원 가입 버튼 누를 경우 -> iframe, closed button 생성
 let signUp = false;
 
-//footer-button event-listener
+//footer-button 이벤트 리스너
 btnBox.addEventListener("touchstart", (e) => {
   const event =
     e.targetTouches.length >= 1 ? e.targetTouches.item(0) : e.touches.item(0);
   onClickBtn(event);
 });
 
-//footer-button touch function
-//home -> 처음으로
-//sign-up -> 회원가입
+//footer-button 터치 이벤트 함수
+//home -> 처음으로 버튼 -> gofirstPage(true) 함수 실행
+//sign-up -> 회원가입 버튼 -> MakeSignUp() 함수 실행
 function onClickBtn(event) {
   if (event.target.className === "home") {
     gofirstPage(true);
@@ -42,7 +48,8 @@ function onClickBtn(event) {
   }
 }
 
-//init function
+//시작 함수
+//애니메이션, 배경음악재생, 두 번째 페이지로 이동
 function init() {
   animation(text1, "fadeInDown", 1);
   animation(shadow, "fadeInUp", 1);
@@ -51,8 +58,8 @@ function init() {
   backgroundSound.play();
 }
 
-//second-page function
-//delay -> 7s
+//두번째 페이지로 이동 함수
+//7초 딜레이
 function goSecondPage() {
   setTimeout(() => {
     resetAnimation(text1);
@@ -70,8 +77,8 @@ function goSecondPage() {
   }, 7000);
 }
 
-//third-page function
-//delay -> 7s
+//세번째 페이지로 이동 함수
+//7초 딜레이
 function goThirdPage() {
   setTimeout(() => {
     texts.forEach((text) => {
@@ -84,8 +91,8 @@ function goThirdPage() {
   }, 7000);
 }
 
-//fourth-page function
-//delay -> 7s
+//네번째 페이지로 이동 함수
+//7초 딜레이
 function gofourthPage() {
   setTimeout(() => {
     resetAnimation(img1);
@@ -95,7 +102,7 @@ function gofourthPage() {
   }, 7000);
 }
 
-//first-page function
+//첫번째 페이지로 이동 함수
 //true -> 처음으로 버튼 이동
 //false -> 자동으로 이동
 function gofirstPage(time) {
@@ -119,9 +126,9 @@ function gofirstPage(time) {
   }
 }
 
-//sign-up button event
-//sign-up = true -> create iframe, closed button
-//sign-up = false -> remove iframe, closed button
+//회원가입 버튼 이벤트
+//sign-up = true -> iframe, closed button 생성
+//sign-up = false -> iframe, closed button 제거
 function makeSignUp() {
   signUp = !signUp;
   const iframe = document.createElement("iframe");
@@ -144,8 +151,8 @@ function makeSignUp() {
   }
 }
 
-//close-button event
-//touch-start -> remove iframe, closed button
+//닫기 버튼 이벤트
+//touch-start -> iframe, closed button 제거
 function onClickCloseBtn() {
   const closeButton = document.querySelector(".close-btn");
   closeButton.addEventListener("touchstart", () => {
@@ -154,7 +161,8 @@ function onClickCloseBtn() {
   });
 }
 
-//when move the page, prePage show, nextPage hide
+//페이지 이동 함수
+//prePage를 감추고 NextPage를 보이게 함
 function goNextPage(prePage, NextPage) {
   prePage.classList.remove("page-visible");
   prePage.classList.add("page-hidden");
@@ -162,12 +170,12 @@ function goNextPage(prePage, NextPage) {
   NextPage.classList.add("page-visible");
 }
 
-//when move the page, reset animation
+//애니메이션 리셋 함수
 function resetAnimation(animation) {
   animation.style.animation = "";
 }
 
-//start target's animation with animation name, delay ainmation second
+//target의 name 애니메이션을 second초 동안 실행시키는 함수
 function animation(target, name, second) {
   target.style.animation = `${name} ${second}s`;
 }
