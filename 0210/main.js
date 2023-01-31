@@ -24,7 +24,7 @@ const bubbles = document.querySelectorAll(".bubble");
 const background = document.querySelector(".background");
 
 //배경음악
-const backgroundSound = new Audio("./sound/bg.mp3");
+const bgSound = new Audio("./sound/bg.mp3");
 
 //회원가입 상태 = false
 //true -> 회원 가입 버튼 누를 경우 -> iframe, closed button 생성
@@ -48,6 +48,24 @@ function onClickBtn(event) {
   }
 }
 
+//window load 이후 배경음악 권한 허용 함수
+let AudioContext;
+
+let audioContext;
+
+window.onload = function () {
+  navigator.mediaDevices
+    .getUserMedia({ audio: true })
+    .then(() => {
+      AudioContext = window.AudioContext;
+      audioContext = new AudioContext();
+      playSound(bgSound);
+    })
+    .catch((e) => {
+      console.error(`Audio permissions denied: ${e}`);
+    });
+};
+
 //시작 함수
 //애니메이션, 배경음악재생, 두 번째 페이지로 이동
 function init() {
@@ -55,7 +73,17 @@ function init() {
   animation(shadow, "fadeInUp", 1);
   animation(background, "fadeIn", 3);
   goSecondPage();
-  backgroundSound.play();
+}
+
+function playSound(sound) {
+  const bgsong = sound.play();
+  if (bgsong !== undefined) {
+    bgsong
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => console.log(err));
+  }
 }
 
 //두번째 페이지로 이동 함수
@@ -70,7 +98,7 @@ function goSecondPage() {
       bubble.classList.add("page-hidden");
     });
     goNextPage(homePage, secondPage);
-    secondPage.classList[1] === "page-visible" && goThirdPage();
+    //secondPage.classList[1] === "page-visible" && goThirdPage();
     texts.forEach((text) => {
       animation(text, "fadeInleft", 1);
     });
@@ -87,7 +115,7 @@ function goThirdPage() {
     goNextPage(secondPage, thirdPage);
     animation(img1, "fadeInRight", 1);
     animation(img2, "fadeInRight", 2);
-    thirdPage.classList[1] === "page-visible" && gofourthPage();
+    //thirdPage.classList[1] === "page-visible" && gofourthPage();
   }, 7000);
 }
 
