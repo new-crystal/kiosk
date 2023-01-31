@@ -101,7 +101,7 @@ p {
 }
 button {
   width: 400px;
-  height: 100px;
+  height: 85px;
   background-color: #fff;
   border: 2px solid rgb(217, 217, 217);
   color: rgb(68, 84, 106);
@@ -145,6 +145,8 @@ button {
 .first-animation-down {
   justify-content: center;
   flex-direction: column;
+  position: relative;
+  top: 100px;
 }
 
 .first-animation-up {
@@ -154,23 +156,25 @@ button {
 
 .header-logo {
   margin-top: 100px;
+  transform: scale(1.5);
 }
 
 .computer {
   position: relative;
   top: 220px;
+  transform: scale(1.5);
 }
 
 .background {
   position: absolute;
-  top: 547px;
-  left: 373px;
-  width: 553.5px;
+  top: 499px;
+  left: 238px;
+  width: 832px;
 }
 
 .shadow {
   position: relative;
-  top: 200px;
+  top: 270px;
   z-index: -1;
 }
 
@@ -183,6 +187,7 @@ button {
   align-items: baseline;
   flex-direction: column;
   margin-top: -200px;
+  margin-left: 120px;
 }
 
 .text {
@@ -191,13 +196,15 @@ button {
 .second-bottom {
   position: relative;
   top: 140px;
-  left: 380px;
+  left: 340px;
+  transform: scale(1.5);
 }
 
 .second-logo {
-  position: relative;
-  top: 140px;
-  left: 250px;
+  position: absolute;
+  top: 120%;
+  left: 35%;
+  transform: scale(1.5);
 }
 
 /* third-page */
@@ -207,18 +214,19 @@ button {
 }
 
 .third-page img {
-  margin: 60px;
+  margin: 70px;
 }
 
 .third-img-box {
   align-items: center;
   flex-direction: column;
-  margin-top: 80px;
+  position: relative;
+  top: 35px;
 }
 
 .third-header-img {
   position: absolute;
-  top: -145px;
+  top: -197px;
 }
 
 /* fourd-page */
@@ -234,12 +242,12 @@ button {
 .fourth-img-box {
   align-items: center;
   flex-direction: column;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 
 .fourth-header-img {
   position: absolute;
-  top: -90px;
+  top: -122px;
 }
 
 /* iframe */
@@ -264,4 +272,8 @@ button {
   top: 100%;
   left: 50%;
   transform: translate(-50%, 10%);
+}
+
+.btn-box i {
+  margin-right: 20px;
 }

@@ -98,7 +98,7 @@ function goSecondPage() {
       bubble.classList.add("page-hidden");
     });
     goNextPage(homePage, secondPage);
-    //secondPage.classList[1] === "page-visible" && goThirdPage();
+    secondPage.classList[1] === "page-visible" && goThirdPage();
     texts.forEach((text) => {
       animation(text, "fadeInleft", 1);
     });
@@ -115,7 +115,7 @@ function goThirdPage() {
     goNextPage(secondPage, thirdPage);
     animation(img1, "fadeInRight", 1);
     animation(img2, "fadeInRight", 2);
-    //thirdPage.classList[1] === "page-visible" && gofourthPage();
+    thirdPage.classList[1] === "page-visible" && gofourthPage();
   }, 7000);
 }
 
@@ -138,7 +138,28 @@ function gofourthPage() {
 //false -> 자동으로 이동
 function gofirstPage(time) {
   if (time === true) {
-    window.location.reload();
+    bubbles.forEach((bubble) => {
+      bubble.classList.add("page-visible");
+      bubble.classList.remove("page-hidden");
+    });
+    animation(text1, "fadeInDown", 1);
+    animation(shadow, "fadeInUp", 1);
+    animation(background, "fadeIn", 3);
+    texts.forEach((text) => {
+      resetAnimation(text);
+    });
+    resetAnimation(img1);
+    resetAnimation(img2);
+    resetAnimation(img3);
+    resetAnimation(img4);
+    resetAnimation(img5);
+    goNextPage(secondPage, homePage);
+    goNextPage(thirdPage, homePage);
+    goNextPage(fourthPage, homePage);
+    init();
+    setTimeout(() => {
+      homePage.classList[1] === "page-visible" && goSecondPage();
+    }, 7000);
   } else if (time === false) {
     setTimeout(() => {
       bubbles.forEach((bubble) => {
