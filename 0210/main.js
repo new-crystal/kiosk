@@ -80,6 +80,7 @@ function init() {
 
 function playSound(sound) {
   const bgsong = sound.play();
+  sound.loop = true;
   if (bgsong !== undefined) {
     bgsong
       .then((result) => {
@@ -145,7 +146,7 @@ function gofourthPage() {
 //true -> 처음으로 버튼 이동
 //false -> 자동으로 이동
 function gofirstPage(homebtn) {
-  console.log(homebtn);
+  time = homebtn;
   if (homebtn === true) {
     bubbles.forEach((bubble) => {
       bubble.classList.add("page-visible");
@@ -171,15 +172,10 @@ function gofirstPage(homebtn) {
     fourthPage.classList.add("page-hidden");
     homePage.classList.remove("page-hidden");
     homePage.classList.add("page-visible");
-  }
-  // goNextPage(secondPage, homePage);
-  // goNextPage(thirdPage, homePage);
-  // goNextPage(fourthPage, homePage);
-
-  // setTimeout(() => {
-  //   homePage.classList[1] === "page-visible" && goSecondPage();
-  // }, 7000);
-  else if (homebtn === false) {
+    setTimeout(() => {
+      homePage.classList[1] === "page-visible" && goSecondPage();
+    }, 7000);
+  } else if (homebtn === false) {
     setTimeout(() => {
       bubbles.forEach((bubble) => {
         bubble.classList.add("page-visible");
