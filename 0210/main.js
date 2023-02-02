@@ -36,11 +36,9 @@ let time = false;
 
 //iframe
 const iframe = document.querySelector(".iframe-box");
-// const iframe = document.querySelector(".iframe");
 
 //닫기 버튼 이벤트 리스너
 document.addEventListener("touchstart", (e) => {
-  console.log(e.target.className);
   if (e.target.className === "close-btn") {
     iframe.classList.add("page-hidden");
     signUp === false;
