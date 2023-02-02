@@ -33,6 +33,20 @@ let signUp = false;
 //처음으로 상태 = false
 //true -> 처음으로 버튼 누를 경우
 let time = false;
+
+//iframe
+const iframe = document.querySelector(".iframe-box");
+// const iframe = document.querySelector(".iframe");
+
+//닫기 버튼 이벤트 리스너
+document.addEventListener("touchstart", (e) => {
+  console.log(e.target.className);
+  if (e.target.className === "close-btn") {
+    iframe.classList.add("page-hidden");
+    signUp === false;
+  }
+});
+
 //footer-button 이벤트 리스너
 btnBox.addEventListener("touchstart", (e) => {
   const event =
@@ -78,6 +92,7 @@ function init() {
   goSecondPage();
 }
 
+//배경음악 재생함수
 function playSound(sound) {
   const bgsong = sound.play();
   sound.loop = true;
@@ -99,8 +114,7 @@ function goSecondPage() {
     resetAnimation(shadow);
     resetAnimation(background);
     bubbles.forEach((bubble) => {
-      bubble.classList.remove("page-visible");
-      bubble.classList.add("page-hidden");
+      bubble.style.opacity = 0;
     });
     goNextPage(homePage, secondPage);
     secondPage.classList[1] === "page-visible" && goThirdPage();
@@ -149,8 +163,8 @@ function gofirstPage(homebtn) {
   time = homebtn;
   if (homebtn === true) {
     bubbles.forEach((bubble) => {
-      bubble.classList.add("page-visible");
-      bubble.classList.remove("page-hidden");
+      0;
+      bubble.style.opacity = 1;
     });
     animation(text1, "fadeInDown", 1);
     animation(shadow, "fadeInUp", 1);
@@ -163,7 +177,6 @@ function gofirstPage(homebtn) {
     resetAnimation(img3);
     resetAnimation(img4);
     resetAnimation(img5);
-
     secondPage.classList.remove("page-visible");
     secondPage.classList.add("page-hidden");
     thirdPage.classList.remove("page-visible");
@@ -178,8 +191,9 @@ function gofirstPage(homebtn) {
   } else if (homebtn === false) {
     setTimeout(() => {
       bubbles.forEach((bubble) => {
-        bubble.classList.add("page-visible");
-        bubble.classList.remove("page-hidden");
+        // bubble.classList.add("page-visible");
+        // bubble.classList.remove("page-hidden");
+        bubble.style.opacity = 1;
       });
       animation(text1, "fadeInDown", 1);
       animation(shadow, "fadeInUp", 1);
@@ -198,35 +212,11 @@ function gofirstPage(homebtn) {
 //sign-up = false -> iframe, closed button 제거
 function makeSignUp() {
   signUp = !signUp;
-  const iframe = document.createElement("iframe");
-  const closeBtn = document.createElement("button");
   if (signUp === true) {
-    iframe.setAttribute("class", "iframe");
-    iframe.setAttribute("src", "http://into-on.com/");
-    iframe.setAttribute("width", "900");
-    iframe.setAttribute("height", "1000");
-    iframe.setAttribute("scrolling", "yes");
-
-    closeBtn.setAttribute("class", "close-btn");
-    closeBtn.innerHTML = `<i class="fa-solid fa-xmark"></i> 닫기`;
-    container.appendChild(iframe);
-    container.appendChild(closeBtn);
-    onClickCloseBtn();
+    iframe.classList.remove("page-hidden");
   } else if (signUp === false) {
-    container.children[container.children.length - 2].remove();
-    container.children[container.children.length - 1].remove();
+    iframe.classList.add("page-hidden");
   }
-}
-
-//닫기 버튼 이벤트
-//touch-start -> iframe, closed button 제거
-function onClickCloseBtn() {
-  const closeButton = document.querySelector(".close-btn");
-  closeButton.addEventListener("touchstart", () => {
-    container.children[container.children.length - 2].remove();
-    container.children[container.children.length - 1].remove();
-    signUp = false;
-  });
 }
 
 //페이지 이동 함수
