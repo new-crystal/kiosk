@@ -140,7 +140,7 @@ button {
   justify-content: center;
   flex-direction: column;
   margin: auto;
-  transform: translate(-50%, -42.8%);
+  transform: translate(-50%, -55%);
 }
 
 .homepage {
@@ -241,7 +241,7 @@ button {
 }
 
 .fourth-page img {
-  margin: 40px;
+  margin: 35.5px;
 }
 
 .fourth-img-box {
@@ -280,9 +280,9 @@ button {
 /* footer */
 .btn-box {
   position: absolute;
-  top: 100%;
+  top: 95%;
   left: 50%;
-  transform: translate(-50%, 20%);
+  transform: translate(-50%, -50%);
 }
 
 .btn-box button {
