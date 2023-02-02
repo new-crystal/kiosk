@@ -163,6 +163,7 @@ function gofirstPage(homebtn) {
   time = homebtn;
   if (homebtn === true) {
     bubbles.forEach((bubble) => {
+      0;
       bubble.style.opacity = 1;
     });
     animation(text1, "fadeInDown", 1);
@@ -176,7 +177,6 @@ function gofirstPage(homebtn) {
     resetAnimation(img3);
     resetAnimation(img4);
     resetAnimation(img5);
-
     secondPage.classList.remove("page-visible");
     secondPage.classList.add("page-hidden");
     thirdPage.classList.remove("page-visible");
