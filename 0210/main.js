@@ -183,9 +183,7 @@ function gofirstPage(homebtn) {
     fourthPage.classList.add("page-hidden");
     homePage.classList.remove("page-hidden");
     homePage.classList.add("page-visible");
-    setTimeout(() => {
-      homePage.classList[1] === "page-visible" && goSecondPage();
-    }, 7000);
+    homePage.classList[1] === "page-visible" && goSecondPage();
   } else if (homebtn === false) {
     setTimeout(() => {
       bubbles.forEach((bubble) => {
