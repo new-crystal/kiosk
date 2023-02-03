@@ -189,8 +189,6 @@ function gofirstPage(homebtn) {
   } else if (homebtn === false) {
     setTimeout(() => {
       bubbles.forEach((bubble) => {
-        // bubble.classList.add("page-visible");
-        // bubble.classList.remove("page-hidden");
         bubble.style.opacity = 1;
       });
       animation(text1, "fadeInDown", 1);
