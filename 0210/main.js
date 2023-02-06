@@ -45,6 +45,15 @@ document.addEventListener("touchstart", (e) => {
   }
 });
 
+//우클릭 방지
+document.addEventListener(
+  "contextmenu",
+  function (event) {
+    event.preventDefault();
+  },
+  false
+);
+
 //footer-button 이벤트 리스너
 btnBox.addEventListener("touchstart", (e) => {
   const event =
@@ -87,7 +96,7 @@ function init() {
   animation(text1, "fadeInDown", 1);
   animation(shadow, "fadeInUp", 1);
   animation(background, "fadeIn", 3);
-  goSecondPage();
+  //goSecondPage();
 }
 
 //배경음악 재생함수
@@ -207,10 +216,19 @@ function gofirstPage(homebtn) {
 function makeSignUp() {
   signUp = !signUp;
   if (signUp === true) {
-    iframe.classList.remove("page-hidden");
+    window.open(
+      "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration"
+    );
+    // iframe.classList.remove("page-hidden");
+
+    iframeSrc();
   } else if (signUp === false) {
     iframe.classList.add("page-hidden");
   }
+}
+
+function iframeSrc() {
+  console.log(iframe.src);
 }
 
 //페이지 이동 함수
