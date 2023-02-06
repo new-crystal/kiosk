@@ -34,16 +34,25 @@ let signUp = false;
 //true -> 처음으로 버튼 누를 경우
 let time = false;
 
-//iframe
-const iframe = document.querySelector(".iframe-box");
+// //iframe
+// const iframe = document.querySelector(".iframe-box");
 
-//닫기 버튼 이벤트 리스너
-document.addEventListener("touchstart", (e) => {
-  if (e.target.className === "close-btn") {
-    iframe.classList.add("page-hidden");
-    signUp === false;
-  }
-});
+// //닫기 버튼 이벤트 리스너
+// document.addEventListener("touchstart", (e) => {
+//   if (e.target.className === "close-btn") {
+//     iframe.classList.add("page-hidden");
+//     signUp === false;
+//   }
+// });
+
+//우클릭 방지
+document.addEventListener(
+  "contextmenu",
+  function (event) {
+    event.preventDefault();
+  },
+  false
+);
 
 //footer-button 이벤트 리스너
 btnBox.addEventListener("touchstart", (e) => {
@@ -68,6 +77,7 @@ let AudioContext;
 
 let audioContext;
 
+//배경음악 디버깅 함수
 window.onload = function () {
   navigator.mediaDevices
     .getUserMedia({ audio: true })
@@ -87,7 +97,7 @@ function init() {
   animation(text1, "fadeInDown", 1);
   animation(shadow, "fadeInUp", 1);
   animation(background, "fadeIn", 3);
-  goSecondPage();
+  //goSecondPage();
 }
 
 //배경음악 재생함수
@@ -207,9 +217,18 @@ function gofirstPage(homebtn) {
 function makeSignUp() {
   signUp = !signUp;
   if (signUp === true) {
-    iframe.classList.remove("page-hidden");
+    const windowOption =
+      "popup, top:460px, left:90px, width:900px, height:1000px";
+    window.open(
+      "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration",
+      "signup",
+      windowOption
+    );
+    // iframe.classList.remove("page-hidden");
+
+    //iframeSrc();
   } else if (signUp === false) {
-    iframe.classList.add("page-hidden");
+    //iframe.classList.add("page-hidden");
   }
 }
 
