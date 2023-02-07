@@ -151,36 +151,17 @@ button {
   justify-content: center;
   flex-direction: column;
   position: relative;
-  top: 100px;
-}
-
-.first-animation-up {
-  justify-content: center;
-  flex-direction: column;
+  top: 360px;
 }
 
 .header-logo {
-  margin-top: 100px;
-  transform: scale(1.5);
+  position: relative;
+  top: 360px;
+  transform: scale(0.6);
 }
 
 .computer {
-  position: relative;
-  top: 220px;
-  transform: scale(1.5);
-}
-
-.background {
-  position: absolute;
-  top: 499px;
-  left: 238px;
-  width: 832px;
-}
-
-.shadow {
-  position: relative;
-  top: 270px;
-  z-index: -1;
+  transform: scale(0.5);
 }
 
 .first-bottom-logo {
@@ -194,6 +175,12 @@ button {
   margin-top: -200px;
   margin-left: 120px;
 }
+.second-text-box {
+  flex-direction: column;
+  position: relative;
+  top: 90px;
+  left: -50px;
+}
 
 .text {
   margin-top: 100px;
@@ -201,15 +188,8 @@ button {
 .second-bottom {
   position: relative;
   top: 140px;
-  left: 340px;
-  transform: scale(1.5);
-}
-
-.second-logo {
-  position: absolute;
-  top: 120%;
-  left: 35%;
-  transform: scale(1.5);
+  left: -50px;
+  /* transform: scale(0.5); */
 }
 
 /* third-page */
@@ -226,12 +206,12 @@ button {
   align-items: center;
   flex-direction: column;
   position: relative;
-  top: 75px;
+  top: 105px;
 }
 
 .third-header-img {
   position: absolute;
-  top: -159px;
+  top: -190px;
 }
 
 /* fourd-page */
@@ -241,14 +221,14 @@ button {
 }
 
 .fourth-page img {
-  margin: 35.5px;
+  margin: 50px;
 }
 
 .fourth-img-box {
   align-items: center;
   flex-direction: column;
   position: relative;
-  top: 100px;
+  top: 90px;
 }
 
 .fourth-4 {
@@ -258,7 +238,7 @@ button {
 
 .fourth-header-img {
   position: absolute;
-  top: -81px;
+  top: -177px;
 }
 
 /* iframe */
