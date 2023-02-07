@@ -11,7 +11,6 @@ const fourthPage = document.querySelector(".fourth-page");
 
 //애니메이션 요소
 const text1 = document.querySelector(".first-animation-down");
-const shadow = document.querySelector(".shadow");
 const btnBox = document.querySelector(".btn-box");
 const texts = document.querySelectorAll(".text");
 const img1 = document.querySelector(".third-1");
@@ -21,31 +20,15 @@ const img4 = document.querySelector(".fourth-2");
 const img5 = document.querySelector(".fourth-3");
 const fourthImg = document.querySelector(".fourth-img-box");
 const bubbles = document.querySelectorAll(".bubble");
-const background = document.querySelector(".background");
 
 //배경음악
 const bgSound = new Audio("./sound/bg.mp3");
-
-//회원가입 상태 = false
-//true -> 회원 가입 버튼 누를 경우 -> iframe, closed button 생성
-let signUp = false;
 
 //처음으로 상태 = false
 //true -> 처음으로 버튼 누를 경우
 let time = false;
 
-// //iframe
-// const iframe = document.querySelector(".iframe-box");
-
-// //닫기 버튼 이벤트 리스너
-// document.addEventListener("touchstart", (e) => {
-//   if (e.target.className === "close-btn") {
-//     iframe.classList.add("page-hidden");
-//     signUp === false;
-//   }
-// });
-
-//우클릭 방지
+//마우스 우클릭 방지 이벤트
 document.addEventListener(
   "contextmenu",
   function (event) {
@@ -54,6 +37,7 @@ document.addEventListener(
   false
 );
 
+container.addEventListener("touchstart", () => getWindowClosed());
 //footer-button 이벤트 리스너
 btnBox.addEventListener("touchstart", (e) => {
   const event =
@@ -74,7 +58,6 @@ function onClickBtn(event) {
 
 //window load 이후 배경음악 권한 허용 함수
 let AudioContext;
-
 let audioContext;
 
 //배경음악 디버깅 함수
@@ -92,12 +75,10 @@ window.onload = function () {
 };
 
 //시작 함수
-//애니메이션, 배경음악재생, 두 번째 페이지로 이동
+//애니메이션, 두 번째 페이지로 이동
 function init() {
   animation(text1, "fadeInDown", 1);
-  animation(shadow, "fadeInUp", 1);
-  animation(background, "fadeIn", 3);
-  //goSecondPage();
+  goSecondPage();
 }
 
 //배경음악 재생함수
@@ -119,8 +100,6 @@ function goSecondPage() {
   setTimeout(() => {
     time = false;
     resetAnimation(text1);
-    resetAnimation(shadow);
-    resetAnimation(background);
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 0;
     });
@@ -175,8 +154,6 @@ function gofirstPage(homebtn) {
       bubble.style.opacity = 1;
     });
     animation(text1, "fadeInDown", 1);
-    animation(shadow, "fadeInUp", 1);
-    animation(background, "fadeIn", 3);
     texts.forEach((text) => {
       resetAnimation(text);
     });
@@ -200,8 +177,6 @@ function gofirstPage(homebtn) {
         bubble.style.opacity = 1;
       });
       animation(text1, "fadeInDown", 1);
-      animation(shadow, "fadeInUp", 1);
-      animation(background, "fadeIn", 3);
       resetAnimation(img3);
       resetAnimation(img4);
       resetAnimation(img5);
@@ -212,23 +187,37 @@ function gofirstPage(homebtn) {
 }
 
 //회원가입 버튼 이벤트
-//sign-up = true -> iframe, closed button 생성
-//sign-up = false -> iframe, closed button 제거
+//pop-up창 생성
+let win = null;
 function makeSignUp() {
-  signUp = !signUp;
-  if (signUp === true) {
-    const windowOption =
-      "popup, top:460px, left:90px, width:900px, height:1000px";
-    window.open(
-      "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration",
-      "signup",
-      windowOption
-    );
-    // iframe.classList.remove("page-hidden");
+  const new_window_width = 900;
+  const new_window_height = 1000;
+  const positionX = window.screen.width / 2 - new_window_width / 2;
+  const positionY = window.screen.height / 2 - new_window_height / 2;
+  const windowOption =
+    "popup=true, width=900, height=1000 ,top=" +
+    positionY +
+    ", left=" +
+    positionX;
+  win = window.open(
+    "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration",
+    " _self",
+    windowOption
+  );
+  win.focus();
+  getWindowClosed();
+}
 
-    //iframeSrc();
-  } else if (signUp === false) {
-    //iframe.classList.add("page-hidden");
+function getWindowClosed() {
+  console.log(win.closed);
+  if (!win) {
+    return;
+  } else {
+    if (win.closed) {
+      container.style.opacity = 1.0;
+    } else {
+      container.style.opacity = 0.5;
+    }
   }
 }
 
