@@ -1,5 +1,8 @@
 "use strict";
 
+//페이지 순서
+let order = 1;
+
 //페이지 전체
 const container = document.querySelector(".container");
 
@@ -48,6 +51,7 @@ document.addEventListener("touchstart", (e) => {
     });
     signUp = false;
     time = false;
+    order = 1;
     gofirstPage(true);
   }
 });
@@ -110,6 +114,7 @@ window.onload = function () {
 //애니메이션, 두 번째 페이지로 이동
 function init() {
   animation(text1, "fadeInDown", 1);
+  order = 2;
   goSecondPage();
 }
 
@@ -130,12 +135,19 @@ function playSound(sound) {
 //7초 딜레이
 function goSecondPage() {
   setTimeout(() => {
-    if (!time) {
+    if (!time && order === 2) {
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+      fourthPage.classList.remove("page-visible");
+      fourthPage.classList.add("page-hidden");
       resetAnimation(text1);
       bubbles.forEach((bubble) => {
         bubble.style.opacity = 0;
       });
       goNextPage(homePage, secondPage);
+      order = 3;
       secondPage.classList[1] === "page-visible" && goThirdPage();
       texts.forEach((text) => {
         animation(text, "fadeInleft", 1);
@@ -148,13 +160,20 @@ function goSecondPage() {
 //7초 딜레이
 function goThirdPage() {
   setTimeout(() => {
-    if (!time) {
+    if (!time && order === 3) {
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
+      fourthPage.classList.remove("page-visible");
+      fourthPage.classList.add("page-hidden");
       texts.forEach((text) => {
         resetAnimation(text);
       });
       goNextPage(secondPage, thirdPage);
       animation(img1, "fadeInRight", 1);
       animation(img2, "fadeInRight", 2);
+      order = 4;
       thirdPage.classList[1] === "page-visible" && gofourthPage();
     }
   }, 7000);
@@ -164,13 +183,20 @@ function goThirdPage() {
 //7초 딜레이
 function gofourthPage() {
   setTimeout(() => {
-    if (!time) {
+    if (!time && order === 4) {
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
       resetAnimation(img1);
       resetAnimation(img2);
       goNextPage(thirdPage, fourthPage);
       animation(img3, "fadeInUp", 1);
       animation(img4, "fadeInUp", 2);
       animation(img5, "fadeInUp", 3);
+      order = 1;
       fourthPage.classList[1] === "page-visible" && gofirstPage(false);
     }
   }, 7000);
@@ -179,8 +205,11 @@ function gofourthPage() {
 //첫번째 페이지로 이동 함수
 //true -> 처음으로 버튼 이동
 //false -> 자동으로 이동
-function gofirstPage(homebtn) {
-  if (homebtn === true && !time) {
+async function gofirstPage(homebtn) {
+  if (order !== 1) {
+    return (order = 1);
+  }
+  if (homebtn === true && !time && order === 1) {
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 1;
     });
@@ -201,9 +230,9 @@ function gofirstPage(homebtn) {
     fourthPage.classList.add("page-hidden");
     homePage.classList.remove("page-hidden");
     homePage.classList.add("page-visible");
-
+    order = 2;
     homePage.classList[1] === "page-visible" && goSecondPage();
-  } else if (!time && !homebtn) {
+  } else if (!time && !homebtn && order === 1) {
     setTimeout(() => {
       bubbles.forEach((bubble) => {
         bubble.style.opacity = 1;
@@ -212,7 +241,14 @@ function gofirstPage(homebtn) {
       resetAnimation(img3);
       resetAnimation(img4);
       resetAnimation(img5);
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+      fourthPage.classList.remove("page-visible");
+      fourthPage.classList.add("page-hidden");
       goNextPage(fourthPage, homePage);
+      order = 2;
       homePage.classList[1] === "page-visible" && goSecondPage();
     }, 7000);
   }
@@ -249,6 +285,7 @@ function makeSignUp() {
       headerImage.style.filter = "brightness(100%)";
     });
     time = false;
+    order = 1;
     gofirstPage(true);
   }
 }
