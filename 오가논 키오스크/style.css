@@ -112,15 +112,7 @@ button {
   height: 110px;
   background-color: transparent;
   border: transparent;
-  /* background-color: #fff; */
-  /* border: 2px solid rgb(217, 217, 217); */
-  /* color: rgb(68, 84, 106); */
-  /* font-family: Arial, Helvetica, sans-serif; */
-  /* font-weight: 500; */
-  /* font-size: 32px; */
   margin: 50px 50px auto 50px;
-  /* padding: 10px 80px; */
-  /* border-radius: 15px; */
 }
 .container {
   width: 1080px;
@@ -274,11 +266,4 @@ button {
 .btn-img {
   width: 100%;
   height: 100%;
-  /* position: relative; */
-  /* top: 4px; */
-  /* left: -5px; */
-}
-
-.home-btn {
-  /* opacity: 70%; */
 }

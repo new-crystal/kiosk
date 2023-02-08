@@ -52,10 +52,9 @@ btnBox.addEventListener("touchstart", (e) => {
 //home -> 처음으로 버튼 -> gofirstPage(true) 함수 실행
 //sign-up -> 회원가입 버튼 -> MakeSignUp() 함수 실행
 function onClickBtn(event) {
-  console.log(event.target.id);
   if (event.target.id === "home") {
     gofirstPage(true);
-  } else if (event.target.className === "sign-up") {
+  } else if (event.target.id === "sign-up") {
     makeSignUp();
   }
 }
@@ -194,26 +193,36 @@ function gofirstPage(homebtn) {
 //pop-up창 생성
 let win = null;
 function makeSignUp() {
-  const new_window_width = 900;
-  const new_window_height = 1400;
-  const positionX = window.screen.width / 2 - new_window_width / 2;
-  const positionY = window.screen.height / 2 - new_window_height / 2;
-  const windowOption =
-    "toolbar=1,width=900,height=1400,top=" + positionY + ",left=" + positionX;
-  win = window.open(
-    "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration",
-    "",
-    windowOption
-  );
-  win.focus();
+  console.log(navigator.userAgent);
+  console.log(win);
+  if (win !== null) {
+    console.log(win);
+    win.focus();
+  } else {
+    const new_window_width = 900;
+    const new_window_height = 1400;
+    const positionX = window.screen.width / 2 - new_window_width / 2;
+    const positionY = window.screen.height / 2 - new_window_height / 2;
+    const windowOption =
+      "popup=yes,toolbar=1,width=900,height=1400,top=" +
+      positionY +
+      ",left=" +
+      positionX;
+    win = window.open(
+      "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration",
+      "",
+      windowOption
+    );
+    win.focus();
 
-  getWindowClosed();
+    getWindowClosed();
+  }
 }
 
-//윈도우 팝업창 떳을 경우에 화면 비활성화
+//윈도우 팝업창 활성화 됐을 경우에 화면 비활성화
 function getWindowClosed() {
-  console.log(win.closed);
   if (!win) {
+    console.log(win.closed);
     return;
   } else {
     if (win.closed) {
