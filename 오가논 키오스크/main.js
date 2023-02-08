@@ -35,13 +35,20 @@ let time = false;
 //iframe
 const iframeBox = document.querySelector(".iframe-box");
 const iframe = document.querySelector(".iframe");
+const headerImg = document.querySelectorAll(".header-img");
 //닫기 버튼 이벤트 리스너
 document.addEventListener("touchstart", (e) => {
+  console.log(e.target.className);
   if (e.target.className === "close-btn") {
     iframeBox.classList.add("page-hidden");
     container.style.backgroundColor = "rgba(0,0,0,0)";
     btnBox.style.filter = "brightness(100%)";
-    signUp === false;
+    headerImg.forEach((headerImage) => {
+      headerImage.style.filter = "brightness(100%)";
+    });
+    signUp = false;
+    time = false;
+    gofirstPage(true);
   }
 });
 
@@ -76,8 +83,8 @@ function onClickBtn(event) {
   if (event.target.id === "home") {
     gofirstPage(true);
   } else if (event.target.id === "sign-up") {
-    init(false);
     makeSignUp();
+    time = true;
   }
 }
 
@@ -101,15 +108,9 @@ window.onload = function () {
 
 //시작 함수
 //애니메이션, 두 번째 페이지로 이동
-function init(start) {
-  console.log(start);
-  if (start === true) {
-    animation(text1, "fadeInDown", 1);
-    goSecondPage();
-  } else {
-    console.log("stop!");
-    animation(text1, "fadeInDown", 1);
-  }
+function init() {
+  animation(text1, "fadeInDown", 1);
+  goSecondPage();
 }
 
 //배경음악 재생함수
@@ -129,16 +130,17 @@ function playSound(sound) {
 //7초 딜레이
 function goSecondPage() {
   setTimeout(() => {
-    time = false;
-    resetAnimation(text1);
-    bubbles.forEach((bubble) => {
-      bubble.style.opacity = 0;
-    });
-    goNextPage(homePage, secondPage);
-    secondPage.classList[1] === "page-visible" && goThirdPage();
-    texts.forEach((text) => {
-      animation(text, "fadeInleft", 1);
-    });
+    if (!time) {
+      resetAnimation(text1);
+      bubbles.forEach((bubble) => {
+        bubble.style.opacity = 0;
+      });
+      goNextPage(homePage, secondPage);
+      secondPage.classList[1] === "page-visible" && goThirdPage();
+      texts.forEach((text) => {
+        animation(text, "fadeInleft", 1);
+      });
+    }
   }, 7000);
 }
 
@@ -169,7 +171,7 @@ function gofourthPage() {
       animation(img3, "fadeInUp", 1);
       animation(img4, "fadeInUp", 2);
       animation(img5, "fadeInUp", 3);
-      //fourthPage.classList[1] === "page-visible" && gofirstPage(false);
+      fourthPage.classList[1] === "page-visible" && gofirstPage(false);
     }
   }, 7000);
 }
@@ -178,10 +180,8 @@ function gofourthPage() {
 //true -> 처음으로 버튼 이동
 //false -> 자동으로 이동
 function gofirstPage(homebtn) {
-  time = homebtn;
   console.log(time);
-  console.log(homebtn);
-  if (homebtn === true) {
+  if (homebtn === true && !time) {
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 1;
     });
@@ -202,8 +202,9 @@ function gofirstPage(homebtn) {
     fourthPage.classList.add("page-hidden");
     homePage.classList.remove("page-hidden");
     homePage.classList.add("page-visible");
+
     homePage.classList[1] === "page-visible" && goSecondPage();
-  } else if (homebtn === false) {
+  } else if (!time && !homebtn) {
     setTimeout(() => {
       bubbles.forEach((bubble) => {
         bubble.style.opacity = 1;
@@ -223,14 +224,33 @@ function gofirstPage(homebtn) {
 //sign-up = false -> iframe, closed button 제거
 function makeSignUp() {
   signUp = !signUp;
-  console.log(signUp);
+
   if (signUp === true) {
     iframeBox.classList.remove("page-hidden");
+    iframe.classList.add("page-visible");
     container.style.backgroundColor = "rgba(0,0,0,0.3)";
-    btnBox.style.filter = "brightness(10%)";
-    init(false);
+    btnBox.style.filter = "brightness(20%)";
+    if (headerImg !== undefined) {
+      headerImg.forEach(
+        (headerImage) => (headerImage.style.filter = "brightness(20%)")
+      );
+    }
+    time = true;
   } else if (signUp === false) {
     iframeBox.classList.add("page-hidden");
+    container.style.backgroundColor = "rgba(0,0,0,0)";
+    btnBox.style.filter = "brightness(100%)";
+    headerImg.forEach((headerImage) => {
+      headerImage.style.filter = "brightness(100%)";
+    });
+    iframeBox.classList.add("page-hidden");
+    container.style.backgroundColor = "rgba(0,0,0,0)";
+    btnBox.style.filter = "brightness(100%)";
+    headerImg.forEach((headerImage) => {
+      headerImage.style.filter = "brightness(100%)";
+    });
+    time = false;
+    gofirstPage(true);
   }
 }
 
@@ -253,4 +273,4 @@ function animation(target, name, second) {
   target.style.animation = `${name} ${second}s`;
 }
 
-init(true);
+init();

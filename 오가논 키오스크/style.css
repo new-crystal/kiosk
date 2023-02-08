@@ -127,7 +127,7 @@ button {
 
 .inner-wrap {
   position: absolute;
-  top: 61%;
+  top: 49%;
   left: 50%;
   justify-content: center;
   flex-direction: column;
@@ -246,7 +246,7 @@ button {
 .close-btn {
   width: 300px;
   position: absolute;
-  top: 80%;
+  top: 85%;
   left: 55%;
   z-index: 1000;
   height: 85px;
@@ -266,7 +266,7 @@ button {
   width: 1080px;
   height: auto;
   position: absolute;
-  top: 98%;
+  top: 87%;
   left: 51%;
   transform: translate(-50%, 50%);
 }
