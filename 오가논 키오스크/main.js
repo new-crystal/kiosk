@@ -37,7 +37,10 @@ document.addEventListener(
   false
 );
 
+//팝업창이 나왔을 경우 전체 컨테이너 터치 이벤트
+//터치할 경우 다시 팝업창이 나옴
 container.addEventListener("touchstart", () => getWindowClosed());
+
 //footer-button 이벤트 리스너
 btnBox.addEventListener("touchstart", (e) => {
   const event =
@@ -49,7 +52,8 @@ btnBox.addEventListener("touchstart", (e) => {
 //home -> 처음으로 버튼 -> gofirstPage(true) 함수 실행
 //sign-up -> 회원가입 버튼 -> MakeSignUp() 함수 실행
 function onClickBtn(event) {
-  if (event.target.className === "home") {
+  console.log(event.target.id);
+  if (event.target.id === "home") {
     gofirstPage(true);
   } else if (event.target.className === "sign-up") {
     makeSignUp();
