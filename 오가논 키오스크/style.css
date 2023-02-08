@@ -191,14 +191,15 @@ button {
 }
 
 .third-page img {
-  margin: 60px;
+  margin: 50px;
 }
 
 .third-img-box {
   align-items: center;
   flex-direction: column;
   position: relative;
-  top: 95px;
+  top: 155px;
+  top: 65px;
 }
 
 .third-header-img {
@@ -213,14 +214,14 @@ button {
 }
 
 .fourth-page img {
-  margin: 50px;
+  margin: 40px;
 }
 
 .fourth-img-box {
   align-items: center;
   flex-direction: column;
   position: relative;
-  top: 90px;
+  top: 70px;
 }
 
 .fourth-4 {
@@ -230,15 +231,16 @@ button {
 
 .fourth-header-img {
   position: absolute;
-  top: -165px;
+  top: -175px;
 }
 
 /* iframe */
 .iframe {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 99;
 }
 
 .close-btn {
@@ -264,7 +266,7 @@ button {
   width: 1080px;
   height: auto;
   position: absolute;
-  top: 100%;
+  top: 98%;
   left: 51%;
   transform: translate(-50%, 50%);
 }

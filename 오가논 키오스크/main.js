@@ -33,28 +33,25 @@ let signUp = false;
 let time = false;
 
 //iframe
-const iframe = document.querySelector(".iframe-box");
-
+const iframeBox = document.querySelector(".iframe-box");
+const iframe = document.querySelector(".iframe");
 //닫기 버튼 이벤트 리스너
 document.addEventListener("touchstart", (e) => {
   if (e.target.className === "close-btn") {
-    iframe.classList.add("page-hidden");
+    iframeBox.classList.add("page-hidden");
     container.style.backgroundColor = "rgba(0,0,0,0)";
     btnBox.style.filter = "brightness(100%)";
     signUp === false;
   }
 });
 
+//팝업창이 꺼진 경우 터치 이벤트 시 배경화면 다시 밝게
 container.addEventListener("touchstart", (e) => {
   if (signUp === false) {
     iframe.classList.add("page-hidden");
     container.style.backgroundColor = "rgba(0,0,0,0)";
     btnBox.style.filter = "brightness(100%)";
   }
-});
-
-container.addEventListener("touchstart", () => {
-  signUp;
 });
 
 //마우스 우클릭 방지 이벤트
@@ -65,11 +62,6 @@ document.addEventListener(
   },
   false
 );
-
-// //팝업창이 나왔을 경우 전체 컨테이너 터치 이벤트
-// //터치할 경우 다시 팝업창이 나옴
-// container.addEventListener("touchstart", () => getWindowClosed());
-
 //footer-button 이벤트 리스너
 btnBox.addEventListener("touchstart", (e) => {
   const event =
@@ -84,6 +76,7 @@ function onClickBtn(event) {
   if (event.target.id === "home") {
     gofirstPage(true);
   } else if (event.target.id === "sign-up") {
+    init(false);
     makeSignUp();
   }
 }
@@ -108,9 +101,15 @@ window.onload = function () {
 
 //시작 함수
 //애니메이션, 두 번째 페이지로 이동
-function init() {
-  animation(text1, "fadeInDown", 1);
-  goSecondPage();
+function init(start) {
+  console.log(start);
+  if (start === true) {
+    animation(text1, "fadeInDown", 1);
+    goSecondPage();
+  } else {
+    console.log("stop!");
+    animation(text1, "fadeInDown", 1);
+  }
 }
 
 //배경음악 재생함수
@@ -170,7 +169,7 @@ function gofourthPage() {
       animation(img3, "fadeInUp", 1);
       animation(img4, "fadeInUp", 2);
       animation(img5, "fadeInUp", 3);
-      fourthPage.classList[1] === "page-visible" && gofirstPage(false);
+      //fourthPage.classList[1] === "page-visible" && gofirstPage(false);
     }
   }, 7000);
 }
@@ -180,9 +179,10 @@ function gofourthPage() {
 //false -> 자동으로 이동
 function gofirstPage(homebtn) {
   time = homebtn;
+  console.log(time);
+  console.log(homebtn);
   if (homebtn === true) {
     bubbles.forEach((bubble) => {
-      0;
       bubble.style.opacity = 1;
     });
     animation(text1, "fadeInDown", 1);
@@ -219,62 +219,18 @@ function gofirstPage(homebtn) {
 }
 
 //회원가입 버튼 이벤트
-//pop-up창 생성
-//이미 팝업창이 생성돼 있는 경우는 새로 만들지 않음
-// let win = null;
-// function makeSignUp() {
-//   console.log(navigator.userAgent);
-//   if (win !== null) {
-//     win.focus();
-//   } else {
-//     const new_window_width = 900;
-//     const new_window_height = 1400;
-//     const positionX = window.screen.width / 2 - new_window_width / 2;
-//     const positionY = window.screen.height / 2 - new_window_height / 2;
-//     const windowOption =
-//       "popup=yes,toolbar=1,width=900,height=1400,top=" +
-//       positionY +
-//       ",left=" +
-//       positionX;
-//     win = window.open(
-//       "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration",
-//       "",
-//       windowOption
-//     );
-//     win.focus();
-
-//     getWindowClosed();
-//   }
-// }
-
-// //윈도우 팝업창 활성화 됐을 경우에 화면 비활성화
-// function getWindowClosed() {
-//   if (!win) {
-//     console.log(win.closed);
-//     return;
-//   } else {
-//     if (win.closed) {
-//       container.style.opacity = 1.0;
-//     } else {
-//       win.focus();
-//       container.style.opacity = 0.5;
-//     }
-//   }
-// }
-
-//회원가입 버튼 이벤트
-//sign-up = true -> iframe, closed button 생성
+//sign-up = true -> iframe, closed button 생성, 뒷 배경 어둡게
 //sign-up = false -> iframe, closed button 제거
 function makeSignUp() {
   signUp = !signUp;
+  console.log(signUp);
   if (signUp === true) {
-    iframe.classList.remove("page-hidden");
+    iframeBox.classList.remove("page-hidden");
     container.style.backgroundColor = "rgba(0,0,0,0.3)";
-    btnBox.style.filter = "brightness(40%)";
-    console.log(body);
-    // wrap.forEach((inner) => (inner.style.opacity = 0.2));
+    btnBox.style.filter = "brightness(10%)";
+    init(false);
   } else if (signUp === false) {
-    iframe.classList.add("page-hidden");
+    iframeBox.classList.add("page-hidden");
   }
 }
 
@@ -297,4 +253,4 @@ function animation(target, name, second) {
   target.style.animation = `${name} ${second}s`;
 }
 
-init();
+init(true);
