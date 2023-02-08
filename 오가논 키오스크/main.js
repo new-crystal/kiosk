@@ -24,9 +24,42 @@ const bubbles = document.querySelectorAll(".bubble");
 //배경음악
 const bgSound = new Audio("./sound/bg.mp3");
 
+//회원가입 상태 = false
+//true -> 회원 가입 버튼 누를 경우 -> iframe, closed button 생성
+let signUp = false;
+
 //처음으로 상태 = false
 //true -> 처음으로 버튼 누를 경우
 let time = false;
+
+//iframe
+const iframeBox = document.querySelector(".iframe-box");
+const iframe = document.querySelector(".iframe");
+const headerImg = document.querySelectorAll(".header-img");
+//닫기 버튼 이벤트 리스너
+document.addEventListener("touchstart", (e) => {
+  console.log(e.target.className);
+  if (e.target.className === "close-btn") {
+    iframeBox.classList.add("page-hidden");
+    container.style.backgroundColor = "rgba(0,0,0,0)";
+    btnBox.style.filter = "brightness(100%)";
+    headerImg.forEach((headerImage) => {
+      headerImage.style.filter = "brightness(100%)";
+    });
+    signUp = false;
+    time = false;
+    gofirstPage(true);
+  }
+});
+
+//팝업창이 꺼진 경우 터치 이벤트 시 배경화면 다시 밝게
+container.addEventListener("touchstart", (e) => {
+  if (signUp === false) {
+    iframe.classList.add("page-hidden");
+    container.style.backgroundColor = "rgba(0,0,0,0)";
+    btnBox.style.filter = "brightness(100%)";
+  }
+});
 
 //마우스 우클릭 방지 이벤트
 document.addEventListener(
@@ -36,11 +69,6 @@ document.addEventListener(
   },
   false
 );
-
-//팝업창이 나왔을 경우 전체 컨테이너 터치 이벤트
-//터치할 경우 다시 팝업창이 나옴
-container.addEventListener("touchstart", () => getWindowClosed());
-
 //footer-button 이벤트 리스너
 btnBox.addEventListener("touchstart", (e) => {
   const event =
@@ -56,6 +84,7 @@ function onClickBtn(event) {
     gofirstPage(true);
   } else if (event.target.id === "sign-up") {
     makeSignUp();
+    time = true;
   }
 }
 
@@ -101,16 +130,17 @@ function playSound(sound) {
 //7초 딜레이
 function goSecondPage() {
   setTimeout(() => {
-    time = false;
-    resetAnimation(text1);
-    bubbles.forEach((bubble) => {
-      bubble.style.opacity = 0;
-    });
-    goNextPage(homePage, secondPage);
-    secondPage.classList[1] === "page-visible" && goThirdPage();
-    texts.forEach((text) => {
-      animation(text, "fadeInleft", 1);
-    });
+    if (!time) {
+      resetAnimation(text1);
+      bubbles.forEach((bubble) => {
+        bubble.style.opacity = 0;
+      });
+      goNextPage(homePage, secondPage);
+      secondPage.classList[1] === "page-visible" && goThirdPage();
+      texts.forEach((text) => {
+        animation(text, "fadeInleft", 1);
+      });
+    }
   }, 7000);
 }
 
@@ -150,10 +180,8 @@ function gofourthPage() {
 //true -> 처음으로 버튼 이동
 //false -> 자동으로 이동
 function gofirstPage(homebtn) {
-  time = homebtn;
-  if (homebtn === true) {
+  if (homebtn === true && !time) {
     bubbles.forEach((bubble) => {
-      0;
       bubble.style.opacity = 1;
     });
     animation(text1, "fadeInDown", 1);
@@ -173,8 +201,9 @@ function gofirstPage(homebtn) {
     fourthPage.classList.add("page-hidden");
     homePage.classList.remove("page-hidden");
     homePage.classList.add("page-visible");
+
     homePage.classList[1] === "page-visible" && goSecondPage();
-  } else if (homebtn === false) {
+  } else if (!time && !homebtn) {
     setTimeout(() => {
       bubbles.forEach((bubble) => {
         bubble.style.opacity = 1;
@@ -190,47 +219,37 @@ function gofirstPage(homebtn) {
 }
 
 //회원가입 버튼 이벤트
-//pop-up창 생성
-let win = null;
+//sign-up = true -> iframe, closed button 생성, 뒷 배경 어둡게
+//sign-up = false -> iframe, closed button 제거
 function makeSignUp() {
-  console.log(navigator.userAgent);
-  console.log(win);
-  if (win !== null) {
-    console.log(win);
-    win.focus();
-  } else {
-    const new_window_width = 900;
-    const new_window_height = 1400;
-    const positionX = window.screen.width / 2 - new_window_width / 2;
-    const positionY = window.screen.height / 2 - new_window_height / 2;
-    const windowOption =
-      "popup=yes,toolbar=1,width=900,height=1400,top=" +
-      positionY +
-      ",left=" +
-      positionX;
-    win = window.open(
-      "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration",
-      "",
-      windowOption
-    );
-    win.focus();
+  signUp = !signUp;
 
-    getWindowClosed();
-  }
-}
-
-//윈도우 팝업창 활성화 됐을 경우에 화면 비활성화
-function getWindowClosed() {
-  if (!win) {
-    console.log(win.closed);
-    return;
-  } else {
-    if (win.closed) {
-      container.style.opacity = 1.0;
-    } else {
-      win.focus();
-      container.style.opacity = 0.5;
+  if (signUp === true) {
+    iframeBox.classList.remove("page-hidden");
+    iframe.classList.add("page-visible");
+    container.style.backgroundColor = "rgba(0,0,0,0.3)";
+    btnBox.style.filter = "brightness(20%)";
+    if (headerImg !== undefined) {
+      headerImg.forEach(
+        (headerImage) => (headerImage.style.filter = "brightness(20%)")
+      );
     }
+    time = true;
+  } else if (signUp === false) {
+    iframeBox.classList.add("page-hidden");
+    container.style.backgroundColor = "rgba(0,0,0,0)";
+    btnBox.style.filter = "brightness(100%)";
+    headerImg.forEach((headerImage) => {
+      headerImage.style.filter = "brightness(100%)";
+    });
+    iframeBox.classList.add("page-hidden");
+    container.style.backgroundColor = "rgba(0,0,0,0)";
+    btnBox.style.filter = "brightness(100%)";
+    headerImg.forEach((headerImage) => {
+      headerImage.style.filter = "brightness(100%)";
+    });
+    time = false;
+    gofirstPage(true);
   }
 }
 
