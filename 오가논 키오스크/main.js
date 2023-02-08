@@ -180,7 +180,6 @@ function gofourthPage() {
 //true -> 처음으로 버튼 이동
 //false -> 자동으로 이동
 function gofirstPage(homebtn) {
-  console.log(time);
   if (homebtn === true && !time) {
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 1;

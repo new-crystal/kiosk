@@ -108,6 +108,11 @@ button {
   background-color: transparent;
   border: transparent;
   margin: 50px 50px auto 50px;
+  transition: all 0.5s linear;
+}
+
+button:active {
+  transform: scale(1.5);
 }
 .container {
   /* width: 1080px;
@@ -259,6 +264,10 @@ button {
   margin: 50px 50px auto 50px;
   padding: 10px 80px;
   border-radius: 15px;
+  transition: all 0.5s linear;
+}
+.close-btn:active {
+  transform: scale(1.5);
 }
 
 /* footer */
@@ -279,6 +288,11 @@ button {
 .btn-img {
   width: 100%;
   height: 100%;
+  transition: all 0.5s linear;
+}
+
+.btn-img:active {
+  transform: scale(1.5);
 }
 
 .close-btn-img {
