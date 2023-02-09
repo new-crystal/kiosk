@@ -251,7 +251,7 @@ button:active {
 .close-btn {
   width: 300px;
   position: absolute;
-  top: 85%;
+  top: 79%;
   left: 55%;
   z-index: 1000;
   height: 85px;
