@@ -3,6 +3,9 @@
 //페이지 순서
 let order = 1;
 
+//페이지 전체
+const container = document.querySelector(".container");
+
 //페이지
 const homePage = document.querySelector(".homepage");
 const secondPage = document.querySelector(".second-page");
@@ -343,7 +346,6 @@ function closeIfrme() {
 
 //ifrmae 보여주는 함수
 function showIframe() {
-  console.log(order);
   bubbles.forEach((bubble) => {
     bubble.style.opacity = 1;
   });

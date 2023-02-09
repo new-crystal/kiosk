@@ -244,6 +244,7 @@ button:active {
   left: 50%;
   transform: translate(-50%, -60%);
   z-index: 99;
+  box-shadow: 12px 12px 2px 1px rgba(65, 65, 66, 0.2);
 }
 
 .close-btn {
@@ -263,10 +264,6 @@ button:active {
   margin: 50px 50px auto 50px;
   padding: 10px 80px;
   border-radius: 15px;
-  transition: all 0.5s linear;
-}
-.close-btn:active {
-  transform: scale(1.5);
 }
 
 /* footer */
