@@ -3,15 +3,12 @@
 //페이지 순서
 let order = 1;
 
-//페이지 전체
-const container = document.querySelector(".container");
-document.addEventListener("touchstart", () => {});
-
 //페이지
 const homePage = document.querySelector(".homepage");
 const secondPage = document.querySelector(".second-page");
 const thirdPage = document.querySelector(".third-page");
 const fourthPage = document.querySelector(".fourth-page");
+const iframePage = document.querySelector(".iframe-page");
 
 //애니메이션 요소
 const text1 = document.querySelector(".first-animation-down");
@@ -37,9 +34,8 @@ let signUp = false;
 let time = false;
 
 //iframe
-const iframeBox = document.querySelector(".iframe-box");
+const iframeBox = document.querySelector(".iframe-page");
 const iframe = document.querySelector(".iframe");
-const headerImg = document.querySelectorAll(".header-img");
 
 //닫기 버튼 이벤트 리스너
 document.addEventListener("touchstart", (e) => {
@@ -127,8 +123,8 @@ function playSound(sound) {
 
 //두번째 페이지로 이동 함수
 //7초 딜레이
-function goSecondPage() {
-  setTimeout(() => {
+function goSecondPage(move) {
+  if (move) {
     if (!time && order === 2) {
       resetPage(homePage);
       resetPage(thirdPage);
@@ -144,13 +140,31 @@ function goSecondPage() {
         animation(text, "fadeInleft", 1);
       });
     }
-  }, 7000);
+  } else {
+    setTimeout(() => {
+      if (!time && order === 2) {
+        resetPage(homePage);
+        resetPage(thirdPage);
+        resetPage(fourthPage);
+        resetAnimation(text1);
+        bubbles.forEach((bubble) => {
+          bubble.style.opacity = 0;
+        });
+        goNextPage(homePage, secondPage);
+        order = 3;
+        secondPage.classList[1] === "page-visible" && goThirdPage();
+        texts.forEach((text) => {
+          animation(text, "fadeInleft", 1);
+        });
+      }
+    }, 7000);
+  }
 }
 
 //세번째 페이지로 이동 함수
 //7초 딜레이
-function goThirdPage() {
-  setTimeout(() => {
+function goThirdPage(move) {
+  if (move) {
     if (!time && order === 3) {
       resetPage(homePage);
       resetPage(secondPage);
@@ -164,13 +178,29 @@ function goThirdPage() {
       order = 4;
       thirdPage.classList[1] === "page-visible" && gofourthPage();
     }
-  }, 7000);
+  } else {
+    setTimeout(() => {
+      if (!time && order === 3) {
+        resetPage(homePage);
+        resetPage(secondPage);
+        resetPage(fourthPage);
+        texts.forEach((text) => {
+          resetAnimation(text);
+        });
+        goNextPage(secondPage, thirdPage);
+        animation(img1, "fadeInRight", 1);
+        animation(img2, "fadeInRight", 2);
+        order = 4;
+        thirdPage.classList[1] === "page-visible" && gofourthPage();
+      }
+    }, 7000);
+  }
 }
 
 //네번째 페이지로 이동 함수
 //7초 딜레이
-function gofourthPage() {
-  setTimeout(() => {
+function gofourthPage(move) {
+  if (move) {
     if (!time && order === 4) {
       resetPage(homePage);
       resetPage(secondPage);
@@ -184,7 +214,23 @@ function gofourthPage() {
       order = 1;
       fourthPage.classList[1] === "page-visible" && gofirstPage(false);
     }
-  }, 7000);
+  } else {
+    setTimeout(() => {
+      if (!time && order === 4) {
+        resetPage(homePage);
+        resetPage(secondPage);
+        resetPage(thirdPage);
+        resetAnimation(img1);
+        resetAnimation(img2);
+        goNextPage(thirdPage, fourthPage);
+        animation(img3, "fadeInUp", 1);
+        animation(img4, "fadeInUp", 2);
+        animation(img5, "fadeInUp", 3);
+        order = 1;
+        fourthPage.classList[1] === "page-visible" && gofirstPage(false);
+      }
+    }, 7000);
+  }
 }
 
 //첫번째 페이지로 이동 함수
@@ -245,15 +291,11 @@ function makeSignUp() {
   signUp = !signUp;
 
   if (signUp === true) {
+    showIframe();
     iframeBox.classList.remove("page-hidden");
     iframe.classList.add("page-visible");
     container.style.backgroundColor = "rgba(0,0,0,0.3)";
-    btnBox.style.filter = "brightness(20%)";
-    if (headerImg !== undefined) {
-      headerImg.forEach(
-        (headerImage) => (headerImage.style.filter = "brightness(20%)")
-      );
-    }
+    btnBox.style.filter = "brightness(80%)";
     time = true;
   } else if (signUp === false) {
     if (time === true) {
@@ -296,11 +338,51 @@ function closeIfrme() {
   iframeBox.classList.add("page-hidden");
   container.style.backgroundColor = "rgba(0,0,0,0)";
   btnBox.style.filter = "brightness(100%)";
-  headerImg.forEach((headerImage) => {
-    headerImage.style.filter = "brightness(100%)";
-  });
-  order = 1;
-  gofirstPage(true);
+  stopIfrme();
 }
 
+//ifrmae 보여주는 함수
+function showIframe() {
+  console.log(order);
+  bubbles.forEach((bubble) => {
+    bubble.style.opacity = 1;
+  });
+  animation(text1, "fadeInDown", 1);
+  texts.forEach((text) => {
+    resetAnimation(text);
+  });
+  resetAnimation(img1);
+  resetAnimation(img2);
+  resetAnimation(img3);
+  resetAnimation(img4);
+  resetAnimation(img5);
+  resetPage(homePage);
+  resetPage(secondPage);
+  resetPage(thirdPage);
+  resetPage(fourthPage);
+}
+
+//iframe에서 나갈 때 받은 순서에 따라 다음 화면 보여주는 함수
+function stopIfrme() {
+  bubbles.forEach((bubble) => {
+    bubble.style.opacity = 0;
+  });
+  switch (order) {
+    case 1:
+      gofirstPage(true);
+      break;
+    case 2:
+      goSecondPage(true);
+      break;
+    case 3:
+      goThirdPage(true);
+      break;
+    case 4:
+      gofourthPage(true);
+      break;
+    default:
+      gofirstPage(true);
+      break;
+  }
+}
 init();
