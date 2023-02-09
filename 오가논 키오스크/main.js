@@ -6,10 +6,6 @@ let order = 1;
 //페이지 전체
 const container = document.querySelector(".container");
 
-container.addEventListener("touchstart", () => {
-  console.log(order);
-});
-
 //페이지
 const homePage = document.querySelector(".homepage");
 const secondPage = document.querySelector(".second-page");
@@ -47,16 +43,8 @@ const headerImg = document.querySelectorAll(".header-img");
 //닫기 버튼 이벤트 리스너
 document.addEventListener("touchstart", (e) => {
   if (e.target.className === "close-btn") {
-    iframeBox.classList.add("page-hidden");
-    container.style.backgroundColor = "rgba(0,0,0,0)";
-    btnBox.style.filter = "brightness(100%)";
-    headerImg.forEach((headerImage) => {
-      headerImage.style.filter = "brightness(100%)";
-    });
     signUp = false;
-    time = false;
-    order = 1;
-    gofirstPage(true);
+    closeIfrme();
   }
 });
 
@@ -144,12 +132,6 @@ function goSecondPage() {
       resetPage(homePage);
       resetPage(thirdPage);
       resetPage(fourthPage);
-      //homePage.classList.remove("page-visible");
-      //homePage.classList.add("page-hidden");
-      //thirdPage.classList.remove("page-visible");
-      //thirdPage.classList.add("page-hidden");
-      // fourthPage.classList.remove("page-visible");
-      // fourthPage.classList.add("page-hidden");
       resetAnimation(text1);
       bubbles.forEach((bubble) => {
         bubble.style.opacity = 0;
@@ -172,12 +154,6 @@ function goThirdPage() {
       resetPage(homePage);
       resetPage(secondPage);
       resetPage(fourthPage);
-      //homePage.classList.remove("page-visible");
-      //homePage.classList.add("page-hidden");
-      //secondPage.classList.remove("page-visible");
-      //secondPage.classList.add("page-hidden");
-      //fourthPage.classList.remove("page-visible");
-      //fourthPage.classList.add("page-hidden");
       texts.forEach((text) => {
         resetAnimation(text);
       });
@@ -198,12 +174,6 @@ function gofourthPage() {
       resetPage(homePage);
       resetPage(secondPage);
       resetPage(thirdPage);
-      //homePage.classList.remove("page-visible");
-      //homePage.classList.add("page-hidden");
-      //thirdPage.classList.remove("page-visible");
-      //thirdPage.classList.add("page-hidden");
-      //secondPage.classList.remove("page-visible");
-      //secondPage.classList.add("page-hidden");
       resetAnimation(img1);
       resetAnimation(img2);
       goNextPage(thirdPage, fourthPage);
@@ -239,12 +209,6 @@ async function gofirstPage(homebtn) {
     resetPage(secondPage);
     resetPage(thirdPage);
     resetPage(fourthPage);
-    //secondPage.classList.remove("page-visible");
-    //secondPage.classList.add("page-hidden");
-    //thirdPage.classList.remove("page-visible");
-    //thirdPage.classList.add("page-hidden");
-    //fourthPage.classList.remove("page-visible");
-    //fourthPage.classList.add("page-hidden");
     homePage.classList.remove("page-hidden");
     homePage.classList.add("page-visible");
     order = 2;
@@ -261,12 +225,6 @@ async function gofirstPage(homebtn) {
       resetPage(secondPage);
       resetPage(thirdPage);
       resetPage(fourthPage);
-      //secondPage.classList.remove("page-visible");
-      //secondPage.classList.add("page-hidden");
-      //thirdPage.classList.remove("page-visible");
-      //thirdPage.classList.add("page-hidden");
-      //fourthPage.classList.remove("page-visible");
-      //fourthPage.classList.add("page-hidden");
       goNextPage(fourthPage, homePage);
       order = 2;
       homePage.classList[1] === "page-visible" && goSecondPage();
@@ -292,21 +250,7 @@ function makeSignUp() {
     }
     time = true;
   } else if (signUp === false) {
-    iframeBox.classList.add("page-hidden");
-    container.style.backgroundColor = "rgba(0,0,0,0)";
-    btnBox.style.filter = "brightness(100%)";
-    headerImg.forEach((headerImage) => {
-      headerImage.style.filter = "brightness(100%)";
-    });
-    iframeBox.classList.add("page-hidden");
-    container.style.backgroundColor = "rgba(0,0,0,0)";
-    btnBox.style.filter = "brightness(100%)";
-    headerImg.forEach((headerImage) => {
-      headerImage.style.filter = "brightness(100%)";
-    });
-    time = false;
-    order = 1;
-    gofirstPage(true);
+    closeIfrme();
   }
 }
 
@@ -333,6 +277,18 @@ function animation(target, name, second) {
 function resetPage(page) {
   page.classList.remove("page-visible");
   page.classList.add("page-hidden");
+}
+
+function closeIfrme() {
+  iframeBox.classList.add("page-hidden");
+  container.style.backgroundColor = "rgba(0,0,0,0)";
+  btnBox.style.filter = "brightness(100%)";
+  headerImg.forEach((headerImage) => {
+    headerImage.style.filter = "brightness(100%)";
+  });
+  time = false;
+  order = 1;
+  gofirstPage(true);
 }
 
 init();
