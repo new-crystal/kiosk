@@ -5,6 +5,7 @@ let order = 1;
 
 //페이지 전체
 const container = document.querySelector(".container");
+document.addEventListener("touchstart", () => {});
 
 //페이지
 const homePage = document.querySelector(".homepage");
@@ -191,7 +192,12 @@ function gofourthPage() {
 //false -> 자동으로 이동
 async function gofirstPage(homebtn) {
   if (order !== 1) {
-    return (order = 1);
+    order = 1;
+  }
+  if (time === false) {
+    setTimeout(() => {
+      time = false;
+    }, 500);
   }
   if (homebtn === true && !time && order === 1) {
     bubbles.forEach((bubble) => {
@@ -250,6 +256,9 @@ function makeSignUp() {
     }
     time = true;
   } else if (signUp === false) {
+    if (time === true) {
+      time = !time;
+    }
     closeIfrme();
   }
 }
@@ -279,14 +288,17 @@ function resetPage(page) {
   page.classList.add("page-hidden");
 }
 
+//ifrmae 닫기 함수
+//닫기 버튼을 누르거나
+//회원가입을 다시 한 번 눌렀을 경우(signUp = true 일 때)실행
 function closeIfrme() {
+  time = false;
   iframeBox.classList.add("page-hidden");
   container.style.backgroundColor = "rgba(0,0,0,0)";
   btnBox.style.filter = "brightness(100%)";
   headerImg.forEach((headerImage) => {
     headerImage.style.filter = "brightness(100%)";
   });
-  time = false;
   order = 1;
   gofirstPage(true);
 }

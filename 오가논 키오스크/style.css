@@ -72,13 +72,11 @@ body {
 
 /* 페이지 숨기기 */
 .page-hidden {
-  /* visibility: hidden; */
   opacity: 0;
 }
 
 /* 페이지 보이기 */
 .page-visible {
-  /* visibility: visible; */
   opacity: 1;
 }
 
