@@ -24,6 +24,7 @@ const img4 = document.querySelector(".fourth-2");
 const img5 = document.querySelector(".fourth-3");
 const fourthImg = document.querySelector(".fourth-img-box");
 const bubbles = document.querySelectorAll(".bubble");
+const buttons = document.querySelectorAll("button");
 
 //배경음악
 const bgSound = new Audio("./sound/bg.mp3");
@@ -43,8 +44,10 @@ const iframe = document.querySelector(".iframe");
 //닫기 버튼 이벤트 리스너
 document.addEventListener("touchstart", (e) => {
   if (e.target.className === "close-btn") {
-    signUp = false;
-    closeIfrme();
+    setTimeout(() => {
+      signUp = false;
+      closeIfrme();
+    }, 500);
   }
 });
 

@@ -110,12 +110,10 @@ button {
 }
 
 button:active {
-  transform: scale(1.5);
+  transform: translate(50px, 50%);
 }
-.container {
-  /* width: 1080px;
-  height: 1920px; */
 
+.container {
   width: 100%;
   height: 100%;
 }
@@ -250,9 +248,8 @@ button:active {
 .close-btn {
   width: 300px;
   position: absolute;
-  top: 100%;
-  left: 55%;
-  transform: translate(30%, 510%);
+  top: 450px;
+  left: 100px;
   z-index: 1000;
   height: 85px;
   background-color: #fff;
