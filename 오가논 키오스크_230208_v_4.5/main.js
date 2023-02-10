@@ -5,7 +5,6 @@ let order = 1;
 
 //페이지 전체
 const container = document.querySelector(".container");
-document.addEventListener("touchstart", () => {});
 
 //페이지
 const homePage = document.querySelector(".homepage");
