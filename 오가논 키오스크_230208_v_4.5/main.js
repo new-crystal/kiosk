@@ -5,6 +5,7 @@ let order = 1;
 
 //페이지 전체
 const container = document.querySelector(".container");
+document.addEventListener("touchstart", () => {});
 
 //페이지
 const homePage = document.querySelector(".homepage");
@@ -55,7 +56,7 @@ document.addEventListener("touchstart", (e) => {
 //팝업창이 꺼진 경우 터치 이벤트 시 배경화면 다시 밝게
 container.addEventListener("touchstart", (e) => {
   if (signUp === false) {
-    iframeBox.classList.add("iframe-page-hidden");
+    iframeBox.classList.add("page-hidden");
     container.style.backgroundColor = "rgba(0,0,0,0)";
     btnBox.style.filter = "brightness(100%)";
   }
@@ -111,8 +112,7 @@ window.onload = function () {
 //애니메이션, 두 번째 페이지로 이동
 function init() {
   animation(text1, "fadeInDown", 1);
-  order = 2;
-  goSecondPage();
+  gofirstPage(false);
 }
 
 //배경음악 재생함수
@@ -120,11 +120,7 @@ function playSound(sound) {
   const bgsong = sound.play();
   sound.loop = true;
   if (bgsong !== undefined) {
-    bgsong
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => console.log(err));
+    bgsong;
   }
 }
 
@@ -142,7 +138,7 @@ function goSecondPage(move) {
       });
       goNextPage(homePage, secondPage);
       order = 3;
-      secondPage.classList[1] === "page-visible" && goThirdPage();
+      goThirdPage();
       texts.forEach((text) => {
         animation(text, "fadeInleft", 1);
       });
@@ -159,7 +155,7 @@ function goSecondPage(move) {
       goNextPage(homePage, secondPage);
       order = 3;
       setTimeout(() => {
-        secondPage.classList[1] === "page-visible" && goThirdPage();
+        goThirdPage();
       }, 7000);
       texts.forEach((text) => {
         animation(text, "fadeInleft", 1);
@@ -183,7 +179,7 @@ function goThirdPage(move) {
       animation(img1, "fadeInRight", 1);
       animation(img2, "fadeInRight", 2);
       order = 4;
-      thirdPage.classList[1] === "page-visible" && gofourthPage();
+      gofourthPage();
     }
   } else {
     if (!time && order === 3) {
@@ -198,7 +194,7 @@ function goThirdPage(move) {
       animation(img2, "fadeInRight", 2);
       order = 4;
       setTimeout(() => {
-        thirdPage.classList[1] === "page-visible" && gofourthPage();
+        gofourthPage();
       }, 7000);
     }
   }
@@ -219,7 +215,7 @@ function gofourthPage(move) {
       animation(img4, "fadeInUp", 2);
       animation(img5, "fadeInUp", 3);
       order = 1;
-      fourthPage.classList[1] === "page-visible" && gofirstPage(false);
+      gofirstPage(false);
     }
   } else {
     if (!time && order === 4) {
@@ -234,7 +230,7 @@ function gofourthPage(move) {
       animation(img5, "fadeInUp", 3);
       order = 1;
       setTimeout(() => {
-        fourthPage.classList[1] === "page-visible" && gofirstPage(false);
+        gofirstPage(false);
       }, 7000);
     }
   }
@@ -244,9 +240,6 @@ function gofourthPage(move) {
 //true -> 처음으로 버튼 이동
 //false -> 자동으로 이동
 async function gofirstPage(homebtn) {
-  if (order !== 1) {
-    order = 1;
-  }
   if (time === false) {
     setTimeout(() => {
       time = false;
@@ -270,8 +263,11 @@ async function gofirstPage(homebtn) {
     resetPage(fourthPage);
     homePage.classList.remove("page-hidden");
     homePage.classList.add("page-visible");
-    order = 2;
-    homePage.classList[1] === "page-visible" && goSecondPage();
+    setTimeout(() => {
+      order = 2;
+      goSecondPage();
+    }, 7000);
+    //homePage.classList[1] === "page-visible" && goSecondPage();
   } else if (!time && !homebtn && order === 1) {
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 1;
@@ -284,9 +280,9 @@ async function gofirstPage(homebtn) {
     resetPage(thirdPage);
     resetPage(fourthPage);
     goNextPage(fourthPage, homePage);
-    order = 2;
     setTimeout(() => {
-      homePage.classList[1] === "page-visible" && goSecondPage();
+      order = 2;
+      goSecondPage();
     }, 7000);
   }
 }
@@ -299,11 +295,9 @@ function makeSignUp() {
 
   if (signUp === true) {
     showIframe();
-    iframe.src = iframe.src;
-    iframeBox.classList.remove("iframe-page-hidden");
-    iframeBox.classList.add("iframe-page-visible");
+    iframeBox.classList.remove("page-hidden");
+    iframeBox.classList.add("page-visible");
     container.style.backgroundColor = "rgba(0,0,0,0.3)";
-    footer.style.backgroundColor = "rgba(0,0,0,0.3)";
     btnBox.style.filter = "brightness(80%)";
     time = true;
   } else if (signUp === false) {
@@ -344,9 +338,10 @@ function resetPage(page) {
 //회원가입을 다시 한 번 눌렀을 경우(signUp = true 일 때)실행
 function closeIfrme() {
   time = false;
-  iframeBox.classList.add("iframe-page-hidden");
+  iframe.src = iframe.src;
+  iframeBox.classList.remove("page-visible");
+  iframeBox.classList.add("page-hidden");
   container.style.backgroundColor = "rgba(0,0,0,0)";
-  footer.style.backgroundColor = "rgba(0,0,0,0)";
   btnBox.style.filter = "brightness(100%)";
   stopIfrme();
 }
@@ -393,4 +388,5 @@ function stopIfrme() {
       break;
   }
 }
+
 init();
