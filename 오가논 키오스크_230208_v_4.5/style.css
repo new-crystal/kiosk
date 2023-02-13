@@ -175,7 +175,8 @@ button:active {
   left: -50px;
 }
 
-.text {
+.text-1,
+text-2 {
   margin-top: 100px;
 }
 .second-bottom {

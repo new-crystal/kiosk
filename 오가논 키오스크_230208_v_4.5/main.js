@@ -16,7 +16,8 @@ const iframePage = document.querySelector(".iframe-page");
 //애니메이션 요소
 const text1 = document.querySelector(".first-animation-down");
 const btnBox = document.querySelector(".btn-box");
-const texts = document.querySelectorAll(".text");
+const text2 = document.querySelector(".text-1");
+const text3 = document.querySelector(".text-2");
 const img1 = document.querySelector(".third-1");
 const img2 = document.querySelector(".third-2");
 const img3 = document.querySelector(".fourth-1");
@@ -39,8 +40,8 @@ let time = false;
 
 //iframe
 const iframeBox = document.querySelector(".iframe-page");
-const iframe = document.querySelector(".iframe");
 const footer = document.querySelector(".footer");
+let iframeContent = null;
 
 //닫기 버튼 이벤트 리스너
 document.addEventListener("touchstart", (e) => {
@@ -52,14 +53,14 @@ document.addEventListener("touchstart", (e) => {
   }
 });
 
-//팝업창이 꺼진 경우 터치 이벤트 시 배경화면 다시 밝게
-container.addEventListener("touchstart", (e) => {
-  if (signUp === false) {
-    iframeBox.classList.add("page-hidden");
-    container.style.backgroundColor = "rgba(0,0,0,0)";
-    btnBox.style.filter = "brightness(100%)";
-  }
-});
+// //팝업창이 꺼진 경우 터치 이벤트 시 배경화면 다시 밝게
+// container.addEventListener("touchstart", (e) => {
+//   if (signUp === false) {
+//     iframeBox.classList.add("page-hidden");
+//     container.style.backgroundColor = "rgba(0,0,0,0)";
+//     btnBox.style.filter = "brightness(100%)";
+//   }
+// });
 
 //마우스 우클릭 방지 이벤트
 document.addEventListener(
@@ -106,14 +107,6 @@ window.onload = function () {
       console.error(`Audio permissions denied: ${e}`);
     });
 };
-
-//시작 함수
-//애니메이션, 두 번째 페이지로 이동
-function init() {
-  animation(text1, "fadeInDown", 1);
-  gofirstPage(false);
-}
-
 //배경음악 재생함수
 function playSound(sound) {
   const bgsong = sound.play();
@@ -121,6 +114,13 @@ function playSound(sound) {
   if (bgsong !== undefined) {
     bgsong;
   }
+}
+
+//시작 함수
+//애니메이션, 두 번째 페이지로 이동
+function init() {
+  animation(text1, "fadeInDown", 1);
+  gofirstPage(false);
 }
 
 //두번째 페이지로 이동 함수
@@ -138,9 +138,8 @@ function goSecondPage(move) {
       goNextPage(homePage, secondPage);
       order = 3;
       goThirdPage();
-      texts.forEach((text) => {
-        animation(text, "fadeInleft", 1);
-      });
+      animation(text2, "fadeInleft", 1);
+      animation(text3, "fadeInleft", 2);
     }
   } else {
     if (!time && order === 2) {
@@ -153,12 +152,11 @@ function goSecondPage(move) {
       });
       goNextPage(homePage, secondPage);
       order = 3;
+      animation(text2, "fadeInleft", 1);
+      animation(text3, "fadeInleft", 1.5);
       setTimeout(() => {
         goThirdPage();
       }, 7000);
-      texts.forEach((text) => {
-        animation(text, "fadeInleft", 1);
-      });
     }
   }
 }
@@ -171,9 +169,8 @@ function goThirdPage(move) {
       resetPage(homePage);
       resetPage(secondPage);
       resetPage(fourthPage);
-      texts.forEach((text) => {
-        resetAnimation(text);
-      });
+      resetAnimation(text1);
+      resetAnimation(text2);
       goNextPage(secondPage, thirdPage);
       animation(img1, "fadeInRight", 1);
       animation(img2, "fadeInRight", 2);
@@ -185,9 +182,8 @@ function goThirdPage(move) {
       resetPage(homePage);
       resetPage(secondPage);
       resetPage(fourthPage);
-      texts.forEach((text) => {
-        resetAnimation(text);
-      });
+      resetAnimation(text1);
+      resetAnimation(text2);
       goNextPage(secondPage, thirdPage);
       animation(img1, "fadeInRight", 1);
       animation(img2, "fadeInRight", 2);
@@ -244,7 +240,10 @@ async function gofirstPage(homebtn) {
       time = false;
     }, 500);
   }
-  if (homebtn === true && !time && order === 1) {
+  if (signUp) {
+    closeIfrme();
+  }
+  if (homebtn === true && !time) {
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 1;
     });
@@ -296,6 +295,14 @@ function makeSignUp() {
     showIframe();
     iframeBox.classList.remove("page-hidden");
     iframeBox.classList.add("page-visible");
+    iframeContent = document.createElement("iframe");
+    iframeContent.classList.add("iframe");
+    iframeContent.src =
+      "https://organonpro.com/kr-kr/member-option/?screenToRender=traditionalRegistration";
+    iframeContent.width = 900;
+    iframeContent.height = 1200;
+    iframeBox.appendChild(iframeContent);
+
     container.style.backgroundColor = "rgba(0,0,0,0.3)";
     btnBox.style.filter = "brightness(80%)";
     time = true;
@@ -337,7 +344,9 @@ function resetPage(page) {
 //회원가입을 다시 한 번 눌렀을 경우(signUp = true 일 때)실행
 function closeIfrme() {
   time = false;
-  iframe.src = iframe.src;
+  signUp = false;
+  iframeContent = null;
+
   iframeBox.classList.remove("page-visible");
   iframeBox.classList.add("page-hidden");
   container.style.backgroundColor = "rgba(0,0,0,0)";
@@ -366,6 +375,7 @@ function showIframe() {
 
 //iframe에서 나갈 때 받은 순서에 따라 다음 화면 보여주는 함수
 function stopIfrme() {
+  // iframe = null;
   bubbles.forEach((bubble) => {
     bubble.style.opacity = 0;
   });
