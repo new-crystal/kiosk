@@ -116,7 +116,7 @@ function playSound(sound) {
 //시작 함수
 //애니메이션, 두 번째 페이지로 이동
 function init() {
-  animation(text1, "fadeInDown", 1);
+  text1.style.animation = `fadeInDown 1s`;
   gofirstPage(false);
 }
 
@@ -128,32 +128,48 @@ function goSecondPage(move) {
   }
   if (move) {
     if (!time && order === 2) {
-      resetPage(homePage);
-      resetPage(thirdPage);
-      resetPage(fourthPage);
-      resetAnimation(text1);
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+      fourthPage.classList.remove("page-visible");
+      fourthPage.classList.add("page-hidden");
+
+      text1.style.animation = "";
       bubbles.forEach((bubble) => {
         bubble.style.opacity = 0;
       });
-      goNextPage(homePage, secondPage);
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      secondPage.classList.remove("page-hidden");
+      secondPage.classList.add("page-visible");
       order = 3;
       goThirdPage();
-      animation(text2, "fadeInleft", 1);
-      animation(text3, "fadeInleft", 2);
+      text2.style.animation = `fadeInleft 1s`;
+      text3.style.animation = `fadeInleft 1.5s`;
     }
   } else {
     if (!time && order === 2) {
-      resetPage(homePage);
-      resetPage(thirdPage);
-      resetPage(fourthPage);
-      resetAnimation(text1);
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+      fourthPage.classList.remove("page-visible");
+      fourthPage.classList.add("page-hidden");
+
+      text1.style.animation = "";
       bubbles.forEach((bubble) => {
         bubble.style.opacity = 0;
       });
-      goNextPage(homePage, secondPage);
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      secondPage.classList.remove("page-hidden");
+      secondPage.classList.add("page-visible");
       order = 3;
-      animation(text2, "fadeInleft", 1);
-      animation(text3, "fadeInleft", 1.5);
+      text2.style.animation = `fadeInleft 1s`;
+      text3.style.animation = `fadeInleft 1.5s`;
       secondTime = setTimeout(() => {
         goThirdPage();
       }, 7000);
@@ -167,27 +183,43 @@ function goThirdPage(move) {
   clearTimeout(secondTime);
   if (move) {
     if (!time && order === 3) {
-      resetPage(homePage);
-      resetPage(secondPage);
-      resetPage(fourthPage);
-      resetAnimation(text2);
-      resetAnimation(text3);
-      goNextPage(secondPage, thirdPage);
-      animation(img1, "fadeInRight", 1);
-      animation(img2, "fadeInRight", 2);
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
+      fourthPage.classList.remove("page-visible");
+      fourthPage.classList.add("page-hidden");
+      text2.style.animation = "";
+      text3.style.animation = "";
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
+      thirdPage.classList.remove("page-hidden");
+      thirdPage.classList.add("page-visible");
+      img1.style.animation = `fadeInRight 1s`;
+      img2.style.animation = `fadeInRight 2s`;
       order = 4;
       gofourthPage();
     }
   } else {
     if (!time && order === 3) {
-      resetPage(homePage);
-      resetPage(secondPage);
-      resetPage(fourthPage);
-      resetAnimation(text2);
-      resetAnimation(text3);
-      goNextPage(secondPage, thirdPage);
-      animation(img1, "fadeInRight", 1);
-      animation(img2, "fadeInRight", 2);
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
+
+      fourthPage.classList.remove("page-visible");
+      fourthPage.classList.add("page-hidden");
+
+      text2.style.animation = "";
+      text3.style.animation = "";
+
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
+      thirdPage.classList.remove("page-hidden");
+      thirdPage.classList.add("page-visible");
+
+      img1.style.animation = `fadeInRight 1s`;
+      img2.style.animation = `fadeInRight 2s`;
       order = 4;
       thirdTime = setTimeout(() => {
         gofourthPage();
@@ -202,29 +234,45 @@ function gofourthPage(move) {
   clearTimeout(thirdTime);
   if (move) {
     if (!time && order === 4) {
-      resetPage(homePage);
-      resetPage(secondPage);
-      resetPage(thirdPage);
-      resetAnimation(img1);
-      resetAnimation(img2);
-      goNextPage(thirdPage, fourthPage);
-      animation(img3, "fadeInUp", 1);
-      animation(img4, "fadeInUp", 2);
-      animation(img5, "fadeInUp", 3);
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+
+      img1.style.animation = "";
+      img2.style.animation = "";
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+      fourthPage.classList.remove("page-hidden");
+      fourthPage.classList.add("page-visible");
+
+      img3.style.animation = `fadeInUp 1s`;
+      img4.style.animation = `fadeInUp 2s`;
+      img5.style.animation = `fadeInUp 3s`;
       order = 1;
       gofirstPage(false);
     }
   } else {
     if (!time && order === 4) {
-      resetPage(homePage);
-      resetPage(secondPage);
-      resetPage(thirdPage);
-      resetAnimation(img1);
-      resetAnimation(img2);
-      goNextPage(thirdPage, fourthPage);
-      animation(img3, "fadeInUp", 1);
-      animation(img4, "fadeInUp", 2);
-      animation(img5, "fadeInUp", 3);
+      homePage.classList.remove("page-visible");
+      homePage.classList.add("page-hidden");
+      secondPage.classList.remove("page-visible");
+      secondPage.classList.add("page-hidden");
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+
+      img1.style.animation = "";
+      img2.style.animation = "";
+
+      thirdPage.classList.remove("page-visible");
+      thirdPage.classList.add("page-hidden");
+      fourthPage.classList.remove("page-hidden");
+      fourthPage.classList.add("page-visible");
+      img3.style.animation = `fadeInUp 1s`;
+      img4.style.animation = `fadeInUp 2s`;
+      img5.style.animation = `fadeInUp 3s`;
       order = 1;
       fourthTime = setTimeout(() => {
         gofirstPage(false);
@@ -250,17 +298,22 @@ async function gofirstPage(homebtn) {
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 1;
     });
-    animation(text1, "fadeInDown", 1);
-    resetAnimation(text2);
-    resetAnimation(text3);
-    resetAnimation(img1);
-    resetAnimation(img2);
-    resetAnimation(img3);
-    resetAnimation(img4);
-    resetAnimation(img5);
-    resetPage(secondPage);
-    resetPage(thirdPage);
-    resetPage(fourthPage);
+    text1.style.animation = `fadeInDown 1s`;
+    text2.style.animation = "";
+    text3.style.animation = "";
+    img1.style.animation = "";
+    img2.style.animation = "";
+    img3.style.animation = "";
+    img4.style.animation = "";
+    img5.style.animation = "";
+
+    secondPage.classList.remove("page-visible");
+    secondPage.classList.add("page-hidden");
+    thirdPage.classList.remove("page-visible");
+    thirdPage.classList.add("page-hidden");
+    fourthPage.classList.remove("page-visible");
+    fourthPage.classList.add("page-hidden");
+
     homePage.classList.remove("page-hidden");
     homePage.classList.add("page-visible");
     setTimeout(() => {
@@ -272,16 +325,26 @@ async function gofirstPage(homebtn) {
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 1;
     });
-    animation(text1, "fadeInDown", 1);
-    resetAnimation(img3);
-    resetAnimation(img4);
-    resetAnimation(img5);
-    resetAnimation(text2);
-    resetAnimation(text3);
-    resetPage(secondPage);
-    resetPage(thirdPage);
-    resetPage(fourthPage);
-    goNextPage(fourthPage, homePage);
+    text1.style.animation = `fadeInDown 1s`;
+    text2.style.animation = "";
+    text3.style.animation = "";
+    img1.style.animation = "";
+    img2.style.animation = "";
+    img3.style.animation = "";
+    img4.style.animation = "";
+    img5.style.animation = "";
+
+    secondPage.classList.remove("page-visible");
+    secondPage.classList.add("page-hidden");
+    thirdPage.classList.remove("page-visible");
+    thirdPage.classList.add("page-hidden");
+    fourthPage.classList.remove("page-visible");
+    fourthPage.classList.add("page-hidden");
+    fourthPage.classList.remove("page-visible");
+    fourthPage.classList.add("page-hidden");
+    homePage.classList.remove("page-hidden");
+    homePage.classList.add("page-visible");
+
     firstTime = setTimeout(() => {
       order = 2;
       goSecondPage();
@@ -318,31 +381,6 @@ function makeSignUp() {
   }
 }
 
-//페이지 이동 함수
-//prePage를 감추고 NextPage를 보이게 함
-function goNextPage(prePage, NextPage) {
-  prePage.classList.remove("page-visible");
-  prePage.classList.add("page-hidden");
-  NextPage.classList.remove("page-hidden");
-  NextPage.classList.add("page-visible");
-}
-
-//애니메이션 리셋 함수
-function resetAnimation(animation) {
-  animation.style.animation = "";
-}
-
-//target의 name 애니메이션을 second초 동안 실행시키는 함수
-function animation(target, name, second) {
-  target.style.animation = `${name} ${second}s`;
-}
-
-//page reset함수
-function resetPage(page) {
-  page.classList.remove("page-visible");
-  page.classList.add("page-hidden");
-}
-
 //ifrmae 닫기 함수
 //닫기 버튼을 누르거나
 //회원가입을 다시 한 번 눌렀을 경우(signUp = true 일 때)실행
@@ -363,17 +401,21 @@ function showIframe() {
   bubbles.forEach((bubble) => {
     bubble.style.opacity = 1;
   });
-  resetAnimation(text2);
-  resetAnimation(text3);
-  resetAnimation(img1);
-  resetAnimation(img2);
-  resetAnimation(img3);
-  resetAnimation(img4);
-  resetAnimation(img5);
-  resetPage(homePage);
-  resetPage(secondPage);
-  resetPage(thirdPage);
-  resetPage(fourthPage);
+  text2.style.animation = "";
+  text3.style.animation = "";
+  img1.style.animation = "";
+  img2.style.animation = "";
+  img3.style.animation = "";
+  img4.style.animation = "";
+  img5.style.animation = "";
+  homePage.classList.remove("page-visible");
+  homePage.classList.add("page-hidden");
+  secondPage.classList.remove("page-visible");
+  secondPage.classList.add("page-hidden");
+  thirdPage.classList.remove("page-visible");
+  thirdPage.classList.add("page-hidden");
+  fourthPage.classList.remove("page-visible");
+  fourthPage.classList.add("page-hidden");
 }
 
 //iframe에서 나갈 때 받은 순서에 따라 다음 화면 보여주는 함수
