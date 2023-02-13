@@ -25,7 +25,6 @@ const img4 = document.querySelector(".fourth-2");
 const img5 = document.querySelector(".fourth-3");
 const fourthImg = document.querySelector(".fourth-img-box");
 const bubbles = document.querySelectorAll(".bubble");
-const buttons = document.querySelectorAll("button");
 
 //배경음악
 const bgSound = new Audio("./sound/bg.mp3");
@@ -37,6 +36,12 @@ let signUp = false;
 //처음으로 상태 = false
 //true -> 처음으로 버튼 누를 경우
 let time = false;
+
+//clearTimeout
+let firstTime = null;
+let secondTime = null;
+let thirdTime = null;
+let fourthTime = null;
 
 //iframe
 const iframeBox = document.querySelector(".iframe-page");
@@ -126,6 +131,9 @@ function init() {
 //두번째 페이지로 이동 함수
 //7초 딜레이
 function goSecondPage(move) {
+  if (!firstTime) {
+    clerTimeout(firstTime);
+  }
   if (move) {
     if (!time && order === 2) {
       resetPage(homePage);
@@ -154,7 +162,7 @@ function goSecondPage(move) {
       order = 3;
       animation(text2, "fadeInleft", 1);
       animation(text3, "fadeInleft", 1.5);
-      setTimeout(() => {
+      secondTime = setTimeout(() => {
         goThirdPage();
       }, 7000);
     }
@@ -164,13 +172,14 @@ function goSecondPage(move) {
 //세번째 페이지로 이동 함수
 //7초 딜레이
 function goThirdPage(move) {
+  clearTimeout(secondTime);
   if (move) {
     if (!time && order === 3) {
       resetPage(homePage);
       resetPage(secondPage);
       resetPage(fourthPage);
-      resetAnimation(text1);
       resetAnimation(text2);
+      resetAnimation(text3);
       goNextPage(secondPage, thirdPage);
       animation(img1, "fadeInRight", 1);
       animation(img2, "fadeInRight", 2);
@@ -182,13 +191,13 @@ function goThirdPage(move) {
       resetPage(homePage);
       resetPage(secondPage);
       resetPage(fourthPage);
-      resetAnimation(text1);
       resetAnimation(text2);
+      resetAnimation(text3);
       goNextPage(secondPage, thirdPage);
       animation(img1, "fadeInRight", 1);
       animation(img2, "fadeInRight", 2);
       order = 4;
-      setTimeout(() => {
+      thirdTime = setTimeout(() => {
         gofourthPage();
       }, 7000);
     }
@@ -198,6 +207,7 @@ function goThirdPage(move) {
 //네번째 페이지로 이동 함수
 //7초 딜레이
 function gofourthPage(move) {
+  clearTimeout(thirdTime);
   if (move) {
     if (!time && order === 4) {
       resetPage(homePage);
@@ -224,7 +234,7 @@ function gofourthPage(move) {
       animation(img4, "fadeInUp", 2);
       animation(img5, "fadeInUp", 3);
       order = 1;
-      setTimeout(() => {
+      fourthTime = setTimeout(() => {
         gofirstPage(false);
       }, 7000);
     }
@@ -235,6 +245,7 @@ function gofourthPage(move) {
 //true -> 처음으로 버튼 이동
 //false -> 자동으로 이동
 async function gofirstPage(homebtn) {
+  clearTimeout(fourthTime);
   if (time === false) {
     setTimeout(() => {
       time = false;
@@ -248,9 +259,8 @@ async function gofirstPage(homebtn) {
       bubble.style.opacity = 1;
     });
     animation(text1, "fadeInDown", 1);
-    texts.forEach((text) => {
-      resetAnimation(text);
-    });
+    resetAnimation(text2);
+    resetAnimation(text3);
     resetAnimation(img1);
     resetAnimation(img2);
     resetAnimation(img3);
@@ -274,11 +284,13 @@ async function gofirstPage(homebtn) {
     resetAnimation(img3);
     resetAnimation(img4);
     resetAnimation(img5);
+    resetAnimation(text2);
+    resetAnimation(text3);
     resetPage(secondPage);
     resetPage(thirdPage);
     resetPage(fourthPage);
     goNextPage(fourthPage, homePage);
-    setTimeout(() => {
+    firstTime = setTimeout(() => {
       order = 2;
       goSecondPage();
     }, 7000);
@@ -359,9 +371,8 @@ function showIframe() {
   bubbles.forEach((bubble) => {
     bubble.style.opacity = 1;
   });
-  texts.forEach((text) => {
-    resetAnimation(text);
-  });
+  resetAnimation(text2);
+  resetAnimation(text3);
   resetAnimation(img1);
   resetAnimation(img2);
   resetAnimation(img3);
