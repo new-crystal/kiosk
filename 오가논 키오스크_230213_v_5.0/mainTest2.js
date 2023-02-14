@@ -38,7 +38,10 @@ let signUp = false;
 let time = false;
 
 //clearTimeout을 하기 위한 setTimeout Id
-let timeOut = null;
+let firstTime = null;
+let secondTime = null;
+let thirdTime = null;
+let fourthTime = null;
 
 //iframe
 const iframeBox = document.querySelector(".iframe-page");
@@ -129,90 +132,122 @@ function playSound(sound) {
 //두번째 페이지로 이동 함수
 //7초 딜레이
 function goSecondPage(move) {
-  homePage.classList.add("page-hidden");
-  thirdPage.classList.add("page-hidden");
-  fourthPage.classList.add("page-hidden");
-  text1.style.animation = "";
-  bubbles.forEach((bubble) => {
-    bubble.style.opacity = 0;
-  });
+  if (move) {
+    if (!time && order === 2) {
+      order = 3;
 
-  secondPage.classList.remove("page-hidden");
+      homePage.classList.add("page-hidden");
+      thirdPage.classList.add("page-hidden");
+      fourthPage.classList.add("page-hidden");
+      text1.style.animation = "";
+      bubbles.forEach((bubble) => {
+        bubble.style.opacity = 0;
+      });
 
-  text2.style.animation = `fadeInleft 1s`;
-  text3.style.animation = `fadeInleft 1.5s`;
+      secondPage.classList.remove("page-hidden");
 
-  if (!time && order === 2 && move) {
-    order = 3;
-    setTimeout(() => {
-      startLoop();
-    }, 7000);
+      text2.style.animation = `fadeInleft 1s`;
+      text3.style.animation = `fadeInleft 1.5s`;
+    }
+  } else {
+    if (!time && order === 2) {
+      order = 3;
+
+      homePage.classList.add("page-hidden");
+      thirdPage.classList.add("page-hidden");
+      fourthPage.classList.add("page-hidden");
+      text1.style.animation = "";
+      bubbles.forEach((bubble) => {
+        bubble.style.opacity = 0;
+      });
+
+      secondPage.classList.remove("page-hidden");
+
+      text2.style.animation = `fadeInleft 1s`;
+      text3.style.animation = `fadeInleft 1.5s`;
+    }
   }
-
-  if (!time && order === 2 && !move) {
-    order = 3;
-    timeOut = setTimeout(() => {
-      startLoop();
-    }, 7000);
-  }
+  setTimeout(() => {
+    startLoop();
+  }, 7000);
 }
 
 //세번째 페이지로 이동 함수
 //7초 딜레이
 function goThirdPage(move) {
-  homePage.classList.add("page-hidden");
-  secondPage.classList.add("page-hidden");
-  fourthPage.classList.add("page-hidden");
-  text2.style.animation = "";
-  text3.style.animation = "";
+  if (move) {
+    if (!time && order === 3) {
+      order = 4;
 
-  thirdPage.classList.remove("page-hidden");
-  img1.style.animation = `fadeInRight 1s`;
-  img2.style.animation = `fadeInRight 2s`;
+      homePage.classList.add("page-hidden");
+      secondPage.classList.add("page-hidden");
+      fourthPage.classList.add("page-hidden");
+      text2.style.animation = "";
+      text3.style.animation = "";
 
-  if (!time && order === 3 && move) {
-    order = 4;
-    setTimeout(() => {
-      startLoop();
-    }, 7000);
+      thirdPage.classList.remove("page-hidden");
+      img1.style.animation = `fadeInRight 1s`;
+      img2.style.animation = `fadeInRight 2s`;
+    }
+  } else {
+    if (!time && order === 3) {
+      order = 4;
+      homePage.classList.add("page-hidden");
+      secondPage.classList.add("page-hidden");
+      fourthPage.classList.add("page-hidden");
+
+      text2.style.animation = "";
+      text3.style.animation = "";
+
+      thirdPage.classList.remove("page-hidden");
+
+      img1.style.animation = `fadeInRight 1s`;
+      img2.style.animation = `fadeInRight 2s`;
+    }
   }
-
-  if (!time && order === 3 && !move) {
-    order = 4;
-    timeOut = setTimeout(() => {
-      startLoop();
-    }, 7000);
-  }
+  setTimeout(() => {
+    startLoop();
+  }, 7000);
 }
 
 //네번째 페이지로 이동 함수
 //7초 딜레이
 function gofourthPage(move) {
-  homePage.classList.add("page-hidden");
-  secondPage.classList.add("page-hidden");
-  thirdPage.classList.add("page-hidden");
-  img1.style.animation = "";
-  img2.style.animation = "";
+  if (move) {
+    if (!time && order === 4) {
+      order = 1;
 
-  fourthPage.classList.remove("page-hidden");
+      homePage.classList.add("page-hidden");
+      secondPage.classList.add("page-hidden");
+      thirdPage.classList.add("page-hidden");
+      img1.style.animation = "";
+      img2.style.animation = "";
 
-  img3.style.animation = `fadeInUp 1s`;
-  img4.style.animation = `fadeInUp 2s`;
-  img5.style.animation = `fadeInUp 3s`;
+      fourthPage.classList.remove("page-hidden");
 
-  if (!time && order === 4 && move) {
-    order = 1;
-    setTimeout(() => {
-      startLoop();
-    }, 7000);
+      img3.style.animation = `fadeInUp 1s`;
+      img4.style.animation = `fadeInUp 2s`;
+      img5.style.animation = `fadeInUp 3s`;
+    }
+  } else {
+    if (!time && order === 4) {
+      order = 1;
+
+      homePage.classList.add("page-hidden");
+      secondPage.classList.add("page-hidden");
+      thirdPage.classList.add("page-hidden");
+      img1.style.animation = "";
+      img2.style.animation = "";
+
+      fourthPage.classList.remove("page-hidden");
+      img3.style.animation = `fadeInUp 1s`;
+      img4.style.animation = `fadeInUp 2s`;
+      img5.style.animation = `fadeInUp 3s`;
+    }
   }
-
-  if (!time && order === 4 && !move) {
-    order = 1;
-    timeOut = setTimeout(() => {
-      startLoop();
-    }, 7000);
-  }
+  setTimeout(() => {
+    startLoop();
+  }, 7000);
 }
 
 //첫번째 페이지로 이동 함수
@@ -222,35 +257,46 @@ async function gofirstPage(homebtn) {
   if (signUp) {
     closeIfrme();
   }
-
-  bubbles.forEach((bubble) => {
-    bubble.style.opacity = 1;
-  });
-  text1.style.animation = `fadeInDown 1s`;
-  text2.style.animation = "";
-  text3.style.animation = "";
-  img1.style.animation = "";
-  img2.style.animation = "";
-  img3.style.animation = "";
-  img4.style.animation = "";
-  img5.style.animation = "";
-
-  secondPage.classList.add("page-hidden");
-  thirdPage.classList.add("page-hidden");
-  fourthPage.classList.add("page-hidden");
-  homePage.classList.remove("page-hidden");
   if (homebtn === true && !time) {
-    clearTimeout(timeOut);
     order = 2;
-    setTimeout(() => {
-      startLoop();
-    }, 7000);
+    bubbles.forEach((bubble) => {
+      bubble.style.opacity = 1;
+    });
+    text1.style.animation = `fadeInDown 1s`;
+    text2.style.animation = "";
+    text3.style.animation = "";
+    img1.style.animation = "";
+    img2.style.animation = "";
+    img3.style.animation = "";
+    img4.style.animation = "";
+    img5.style.animation = "";
+
+    secondPage.classList.add("page-hidden");
+    thirdPage.classList.add("page-hidden");
+    fourthPage.classList.add("page-hidden");
+    homePage.classList.remove("page-hidden");
   } else if (!time && !homebtn && order === 1) {
     order = 2;
-    timeOut = setTimeout(() => {
-      startLoop();
-    }, 7000);
+    bubbles.forEach((bubble) => {
+      bubble.style.opacity = 1;
+    });
+    text1.style.animation = `fadeInDown 1s`;
+    text2.style.animation = "";
+    text3.style.animation = "";
+    img1.style.animation = "";
+    img2.style.animation = "";
+    img3.style.animation = "";
+    img4.style.animation = "";
+    img5.style.animation = "";
+
+    secondPage.classList.add("page-hidden");
+    thirdPage.classList.add("page-hidden");
+    fourthPage.classList.add("page-hidden");
+    homePage.classList.remove("page-hidden");
   }
+  setTimeout(() => {
+    startLoop();
+  }, 7000);
 }
 
 //회원가입 버튼 이벤트
@@ -258,8 +304,8 @@ async function gofirstPage(homebtn) {
 //sign-up = false -> iframe, closed button 제거
 function makeSignUp() {
   signUp = !signUp;
+
   if (signUp === true) {
-    clearTimeout(timeOut);
     showIframe();
     iframeBox.classList.remove("page-hidden");
     iframeContent = document.createElement("iframe");
@@ -300,7 +346,6 @@ function showIframe() {
   bubbles.forEach((bubble) => {
     bubble.style.opacity = 1;
   });
-  text1.style.animation = "";
   text2.style.animation = "";
   text3.style.animation = "";
   img1.style.animation = "";
@@ -308,6 +353,7 @@ function showIframe() {
   img3.style.animation = "";
   img4.style.animation = "";
   img5.style.animation = "";
+
   homePage.classList.add("page-hidden");
   secondPage.classList.add("page-hidden");
   thirdPage.classList.add("page-hidden");
@@ -319,7 +365,6 @@ function stopIfrme() {
   bubbles.forEach((bubble) => {
     bubble.style.opacity = 0;
   });
-  clearTimeout(timeOut);
   switch (order) {
     case 1:
       gofirstPage(true);
@@ -340,17 +385,22 @@ function stopIfrme() {
 }
 
 function startLoop() {
+  // console.log(order);
   switch (order) {
     case 1:
+      console.log(1);
       gofirstPage(false);
       break;
     case 2:
+      console.log(2);
       goSecondPage(false);
       break;
     case 3:
+      console.log(3);
       goThirdPage(false);
       break;
     case 4:
+      console.log(4);
       gofourthPage(false);
       break;
     default:
