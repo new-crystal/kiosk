@@ -41,7 +41,7 @@ const iframeBox = document.querySelector(".iframe-page");
 const footer = document.querySelector(".footer");
 let iframeContent = null;
 
-//btn
+//button
 const home = document.querySelector(".home");
 const signUpBtn = document.querySelector(".sign-up");
 const closeBtn = document.querySelector(".close-btn");
@@ -71,14 +71,16 @@ btnBox.addEventListener("touchstart", (e) => {
 });
 
 //footer-button 터치 이벤트 함수
-//home -> 처음으로 버튼 -> gofirstPage(true) 함수 실행
+//home -> 처음으로 버튼 -> gofirstPage() 함수 실행
 //sign-up -> 회원가입 버튼 -> MakeSignUp() 함수 실행
+//button-active -> 버튼 애니메이션
 function onClickBtn(event) {
   if (event.target.id === "home") {
     home.classList.add("button-active");
     setTimeout(() => {
       home.classList.remove("button-active");
     }, 500);
+    //interval clear & order 재할당 & interval 다시 실행
     clearInterval(intervalId);
     order = 4;
     startInterval();
@@ -109,6 +111,7 @@ window.onload = function () {
       console.error(`Audio permissions denied: ${e}`);
     });
 };
+
 //배경음악 재생함수
 function playSound(sound) {
   const bgsong = sound.play();
@@ -119,7 +122,6 @@ function playSound(sound) {
 }
 
 //두번째 페이지로 이동 함수
-//7초 딜레이
 function goSecondPage() {
   homePage.classList.add("page-hidden");
   thirdPage.classList.add("page-hidden");
@@ -135,7 +137,6 @@ function goSecondPage() {
 }
 
 //세번째 페이지로 이동 함수
-//7초 딜레이
 function goThirdPage() {
   homePage.classList.add("page-hidden");
   secondPage.classList.add("page-hidden");
@@ -149,7 +150,6 @@ function goThirdPage() {
 }
 
 //네번째 페이지로 이동 함수
-//7초 딜레이
 function gofourthPage() {
   homePage.classList.add("page-hidden");
   secondPage.classList.add("page-hidden");
@@ -201,6 +201,7 @@ function makeSignUp() {
 //ifrmae 닫기 함수
 //닫기 버튼을 누르거나
 //회원가입을 다시 한 번 눌렀을 경우(signUp = true 일 때)실행
+//interval 재실행
 function closeIfrme() {
   signUp = false;
   iframeContent = null;
@@ -212,6 +213,7 @@ function closeIfrme() {
 }
 
 //iframe 생성 함수
+//clearInterval
 function createIframe() {
   clearInterval(intervalId);
   showIframe();
