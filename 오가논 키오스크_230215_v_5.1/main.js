@@ -21,7 +21,7 @@ let intervalId = null;
 
 //iframe
 const iframeBox = document.querySelector(".iframe-page");
-const footer = document.querySelector(".footer");
+const btnBox = document.querySelector(".btn-box");
 let iframeContent = null;
 
 //button
@@ -155,7 +155,7 @@ function closeIfrme() {
 //iframe 생성 함수
 //clearInterval
 function createIframe() {
-  showIframe();
+  page.showIframe();
   iframeBox.classList.remove("iframe-page-hidden");
   iframeContent = document.createElement("iframe");
   iframeContent.classList.add("iframe");
