@@ -1,30 +1,13 @@
 "use strict";
 
-//페이지 순서
-let order = 1;
+import { Page } from "./page.js";
+
+const page = new Page();
+
+const bubbles = document.querySelectorAll(".bubble");
 
 //페이지 전체
 const container = document.querySelector(".container");
-
-//페이지
-const homePage = document.querySelector(".homepage");
-const secondPage = document.querySelector(".second-page");
-const thirdPage = document.querySelector(".third-page");
-const fourthPage = document.querySelector(".fourth-page");
-const iframePage = document.querySelector(".iframe-page");
-
-//애니메이션 요소
-const text1 = document.querySelector(".first-animation-down");
-const btnBox = document.querySelector(".btn-box");
-const text2 = document.querySelector(".text-1");
-const text3 = document.querySelector(".text-2");
-const img1 = document.querySelector(".third-1");
-const img2 = document.querySelector(".third-2");
-const img3 = document.querySelector(".fourth-1");
-const img4 = document.querySelector(".fourth-2");
-const img5 = document.querySelector(".fourth-3");
-const fourthImg = document.querySelector(".fourth-img-box");
-const bubbles = document.querySelectorAll(".bubble");
 
 //배경음악
 const bgSound = new Audio("./sound/bg.mp3");
@@ -83,7 +66,7 @@ home.addEventListener("touchstart", () => {
     }, 500);
     //interval clear & order 재할당 & interval 다시 실행
     clearInterval(intervalId);
-    order = 1;
+    page.order = 1;
     startInterval();
     interval();
   }
@@ -140,71 +123,6 @@ function playSound(sound) {
   }
 }
 
-//두번째 페이지로 이동 함수
-function goSecondPage() {
-  homePage.classList.add("page-hidden");
-  thirdPage.classList.add("page-hidden");
-  fourthPage.classList.add("page-hidden");
-  text1.style.animation = "";
-  bubbles.forEach((bubble) => {
-    bubble.style.opacity = 0;
-  });
-
-  secondPage.classList.remove("page-hidden");
-  text2.style.animation = `fadeInleft 1s`;
-  text3.style.animation = `fadeInleft 1.5s`;
-}
-
-//세번째 페이지로 이동 함수
-function goThirdPage() {
-  homePage.classList.add("page-hidden");
-  secondPage.classList.add("page-hidden");
-  fourthPage.classList.add("page-hidden");
-  text2.style.animation = "";
-  text3.style.animation = "";
-
-  thirdPage.classList.remove("page-hidden");
-  img1.style.animation = `fadeInRight 1s`;
-  img2.style.animation = `fadeInRight 2s`;
-}
-
-//네번째 페이지로 이동 함수
-function gofourthPage() {
-  homePage.classList.add("page-hidden");
-  secondPage.classList.add("page-hidden");
-  thirdPage.classList.add("page-hidden");
-  img1.style.animation = "";
-  img2.style.animation = "";
-
-  fourthPage.classList.remove("page-hidden");
-
-  img3.style.animation = `fadeInUp 1s`;
-  img4.style.animation = `fadeInUp 2s`;
-  img5.style.animation = `fadeInUp 3s`;
-}
-
-//첫번째 페이지로 이동 함수
-//true -> 처음으로 버튼 이동
-//false -> 자동으로 이동
-async function gofirstPage() {
-  bubbles.forEach((bubble) => {
-    bubble.style.opacity = 1;
-  });
-  text1.style.animation = `fadeInDown 1s`;
-  text2.style.animation = "";
-  text3.style.animation = "";
-  img1.style.animation = "";
-  img2.style.animation = "";
-  img3.style.animation = "";
-  img4.style.animation = "";
-  img5.style.animation = "";
-
-  secondPage.classList.add("page-hidden");
-  thirdPage.classList.add("page-hidden");
-  fourthPage.classList.add("page-hidden");
-  homePage.classList.remove("page-hidden");
-}
-
 //회원가입 버튼 이벤트
 //sign-up = true -> iframe, closed button 생성, 뒷 배경 어둡게
 //sign-up = false -> iframe, closed button 제거
@@ -251,44 +169,25 @@ function createIframe() {
   btnBox.style.filter = "brightness(80%)";
 }
 
-//ifrmae 진행할 때 페이지 감추는 함수
-function showIframe() {
-  bubbles.forEach((bubble) => {
-    bubble.style.opacity = 1;
-  });
-  text1.style.animation = "";
-  text2.style.animation = "";
-  text3.style.animation = "";
-  img1.style.animation = "";
-  img2.style.animation = "";
-  img3.style.animation = "";
-  img4.style.animation = "";
-  img5.style.animation = "";
-  homePage.classList.add("page-hidden");
-  secondPage.classList.add("page-hidden");
-  thirdPage.classList.add("page-hidden");
-  fourthPage.classList.add("page-hidden");
-}
-
 //interval 반복 될 함수
 //order을 받아 순서대로 진행
 function startInterval() {
-  switch (order) {
+  switch (page.order) {
     case 1:
-      order++;
-      gofirstPage();
+      page.order++;
+      page.gofirst();
       break;
     case 2:
-      order++;
-      goSecondPage();
+      page.order++;
+      page.goSecond();
       break;
     case 3:
-      order++;
-      goThirdPage();
+      page.order++;
+      page.goThird();
       break;
     case 4:
-      order = 1;
-      gofourthPage();
+      page.order = 1;
+      page.gofourth();
       break;
   }
 }
