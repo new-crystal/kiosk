@@ -1,7 +1,7 @@
 "use strict";
 
 //페이지 순서
-let order = 4;
+let order = 1;
 
 //페이지 전체
 const container = document.querySelector(".container");
@@ -83,7 +83,7 @@ home.addEventListener("touchstart", () => {
     }, 500);
     //interval clear & order 재할당 & interval 다시 실행
     clearInterval(intervalId);
-    order = 4;
+    order = 1;
     startInterval();
     interval();
   }
@@ -275,20 +275,20 @@ function showIframe() {
 function startInterval() {
   switch (order) {
     case 1:
-      order = 2;
-      goSecondPage();
+      order++;
+      gofirstPage();
       break;
     case 2:
-      order = 3;
-      goThirdPage();
+      order++;
+      goSecondPage();
       break;
     case 3:
-      order = 4;
-      gofourthPage();
+      order++;
+      goThirdPage();
       break;
     case 4:
       order = 1;
-      gofirstPage();
+      gofourthPage();
       break;
   }
 }
