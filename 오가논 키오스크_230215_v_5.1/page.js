@@ -1,28 +1,25 @@
 export class Page {
-  constructor() {
-    //페이지 순서
-    this.order = 1;
+  order = 1;
 
-    //페이지
-    this.homePage = document.querySelector(".homepage");
-    this.secondPage = document.querySelector(".second-page");
-    this.thirdPage = document.querySelector(".third-page");
-    this.fourthPage = document.querySelector(".fourth-page");
-    this.iframePage = document.querySelector(".iframe-page");
+  //페이지
+  homePage = document.querySelector(".homepage");
+  secondPage = document.querySelector(".second-page");
+  thirdPage = document.querySelector(".third-page");
+  fourthPage = document.querySelector(".fourth-page");
+  iframePage = document.querySelector(".iframe-page");
 
-    //애니메이션 요소
-    this.text1 = document.querySelector(".first-animation-down");
-    this.btnBox = document.querySelector(".btn-box");
-    this.text2 = document.querySelector(".text-1");
-    this.text3 = document.querySelector(".text-2");
-    this.img1 = document.querySelector(".third-1");
-    this.img2 = document.querySelector(".third-2");
-    this.img3 = document.querySelector(".fourth-1");
-    this.img4 = document.querySelector(".fourth-2");
-    this.img5 = document.querySelector(".fourth-3");
-    this.fourthImg = document.querySelector(".fourth-img-box");
-    this.bubbles = document.querySelectorAll(".bubble");
-  }
+  //애니메이션 요소
+  text1 = document.querySelector(".first-animation-down");
+  btnBox = document.querySelector(".btn-box");
+  text2 = document.querySelector(".text-1");
+  text3 = document.querySelector(".text-2");
+  img1 = document.querySelector(".third-1");
+  img2 = document.querySelector(".third-2");
+  img3 = document.querySelector(".fourth-1");
+  img4 = document.querySelector(".fourth-2");
+  img5 = document.querySelector(".fourth-3");
+  fourthImg = document.querySelector(".fourth-img-box");
+  bubbles = document.querySelectorAll(".bubble");
 
   //첫번째 페이지 작동 함수
   gofirst() {
