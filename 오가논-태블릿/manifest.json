@@ -3,7 +3,7 @@
   "name": "Organon-tablet",
   "icons": [
     {
-      "src": "/img/icon.png",
+      "src": "/kiosk/오가논-태블릿/img/icon.png",
       "type": "image/png",
       "sizes": "165x165"
     }
