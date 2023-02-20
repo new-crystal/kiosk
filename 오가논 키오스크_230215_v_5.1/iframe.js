@@ -1,7 +1,3 @@
-import { Page } from "./page.js";
-
-const page = new Page();
-
 export class Iframe {
   //회원가입 상태 = false
   //true -> 회원 가입 버튼 누를 경우 -> iframe, closed button 생성
@@ -18,15 +14,6 @@ export class Iframe {
   signUpBtn = document.querySelector(".sign-up");
   closeBtn = document.querySelector(".close-btn");
 
-  make() {
-    this.signUp = !this.signUp;
-    if (this.signUp) {
-      this.create();
-    } else if (!this.signUp) {
-      this.close();
-    }
-  }
-
   close() {
     this.signUp = false;
     this.iframeContent = null;
@@ -36,7 +23,7 @@ export class Iframe {
   }
 
   create() {
-    page.showIframe();
+    this.signUp = true;
     this.iframeBox.classList.remove("iframe-page-hidden");
     this.iframeContent = document.createElement("iframe");
     this.iframeContent.classList.add("iframe");
