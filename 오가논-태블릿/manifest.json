@@ -3,17 +3,12 @@
   "name": "Organon-tablet",
   "icons": [
     {
-      "src": "/img/image2.png",
+      "src": "/img/icon.png",
       "type": "image/png",
-      "sizes": "192*192"
-    },
-    {
-      "src": "/img/image2.png",
-      "type": "image/png",
-      "sizes": "512*512"
+      "sizes": "165x165"
     }
   ],
-  "start_url": "/pwa-examples/js13kpwa/index.html",
+  "start_url": "/",
   "display": "fullscreen",
   "theme_color": "#B12A34",
   "background_color": "#B12A34"

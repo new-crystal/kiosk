@@ -1,49 +1,43 @@
-if ("serviceWorker" in navigator) {
-  try {
-    navigator.serviceWorker.register("serviceWorker.js");
-    console.log("Service Worker Registered");
-  } catch (error) {
-    console.log("Service Worker Registration Failed");
-  }
-}
-const staticAssets = [
+const sCacheName = "practice-pwa"; //캐시 이름 선언
+const aFilesToCache = [
   "./",
+  "./img/icon.png",
   "./style.css",
   "./main.js",
   "./page.js",
   "./iframe.js",
   "./sound/bg.mp3",
-];
+  "./manifest.json",
+]; //캐시할 파일 선언
 
-self.addEventListener("install", async (event) => {
-  const cache = await caches.open("static-cache");
-  cache.addAll(staticAssets);
+//서비스워커 설치하고 캐시파일 저장
+self.addEventListener("install", (pEvent) => {
+  console.log("서비스워커를 설치합니다.");
+  pEvent.waitUntil(
+    caches.open(sCacheName).then((pCache) => {
+      console.log("파일을 캐시에 저장합니다.");
+      return pCache.addAll(aFilesToCache);
+    })
+  );
+});
+// 고유번호 할당받은 서비스 워커 동작 시작
+self.addEventListener("activate", (pEvent) => {
+  console.log("서비스워커 동작 시작");
 });
 
-self.addEventListener("fetch", (event) => {
-  const req = event.request;
-  const url = new URL(req.url);
-
-  if (url.origin === location.url) {
-    event.respondWith(cacheFirst(req));
-  } else {
-    event.respondWith(newtorkFirst(req));
-  }
+//데이터 요청시 네트워크 또는 캐시에서 찾아 반환
+self.addEventListener("fetch", (pEvent) => {
+  pEvent.respondWith(
+    caches
+      .match(pEvent.request)
+      .then((response) => {
+        if (!response) {
+          console.log("네트워크에서 데이터 요청!", pEvent.request);
+          return fetch(pEvent.request);
+        }
+        console.log("캐시에서 데이터 요청!", pEvent.request);
+        return response;
+      })
+      .catch((err) => console.log(err))
+  );
 });
-
-async function cacheFirst(req) {
-  const cachedResponse = caches.match(req);
-  return cachedResponse || fetch(req);
-}
-
-async function newtorkFirst(req) {
-  const cache = await caches.open("dynamic-cache");
-
-  try {
-    const res = await fetch(req);
-    cache.put(req, res.clone());
-    return res;
-  } catch (error) {
-    return await cache.match(req);
-  }
-}
