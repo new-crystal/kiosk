@@ -1,6 +1,7 @@
 const sCacheName = "practice-pwa"; //캐시 이름 선언
 const aFilesToCache = [
   "./",
+  "./index.html",
   "./img/icon.png",
   "./style.css",
   "./main.js",
