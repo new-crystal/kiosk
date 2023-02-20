@@ -1,0 +1,20 @@
+{
+  "short_name": "Organon",
+  "name": "Organon-tablet",
+  "icons": [
+    {
+      "src": "/img/image2.png",
+      "type": "image/png",
+      "sizes": "192*192"
+    },
+    {
+      "src": "/img/image2.png",
+      "type": "image/png",
+      "sizes": "512*512"
+    }
+  ],
+  "start_url": "/pwa-examples/js13kpwa/index.html",
+  "display": "fullscreen",
+  "theme_color": "#B12A34",
+  "background_color": "#B12A34"
+}

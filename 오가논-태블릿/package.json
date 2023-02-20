@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "serve": "^14.2.0"
+  },
+  "name": "kiosk",
+  "version": "1.22.19",
+  "description": "organon kiosk",
+  "main": "index.js",
+  "repository": "https://github.com/crystal025/kiosk.git",
+  "author": "new-crystal <oj3339@naver.com>",
+  "license": "MIT"
+}

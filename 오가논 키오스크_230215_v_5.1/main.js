@@ -20,8 +20,6 @@ const home = document.querySelector(".home");
 const signUpBtn = document.querySelector(".sign-up");
 const closeBtn = document.querySelector(".close-btn");
 
-const size = window.matchMedia("screen and (max-width: 768px)");
-
 //마우스 우클릭 방지 이벤트
 document.addEventListener(
   "contextmenu",
@@ -36,14 +34,15 @@ closeBtn.addEventListener("touchstart", () => {
   let closeTouch = true;
   if (closeTouch) {
     closeTouch = false;
-    setTimeout(() => {
+    const closeTime = setTimeout(() => {
       closeTouch = true;
     }, 100);
+    clearTimeout(closeTime);
     iframe.signUp = false;
-    iframe.close();
     bubbles.forEach((bubble) => {
       bubble.style.opacity = 0;
     });
+    iframe.close();
     interval();
     startInterval();
   }
@@ -53,11 +52,12 @@ closeBtn.addEventListener("touchstart", () => {
 //button-active -> 버튼 애니메이션
 home.addEventListener("touchstart", () => {
   let homeTouch = true;
-  if (homeTouch) {
+  if (homeTouch && !iframe.signUp) {
     homeTouch = false;
-    setTimeout(() => {
+    const homeTime = setTimeout(() => {
       homeTouch = true;
     }, 100);
+    clearTimeout(homeTime);
     home.classList.add("button-active");
     setTimeout(() => {
       home.classList.remove("button-active");
@@ -76,9 +76,10 @@ signUpBtn.addEventListener("touchstart", () => {
   let signupTouch = true;
   if (signupTouch) {
     signupTouch = false;
-    setTimeout(() => {
+    const signUpTime = setTimeout(() => {
       signupTouch = true;
     }, 100);
+    clearTimeout(signUpTime);
     signUpBtn.classList.add("button-active");
     setTimeout(() => {
       signUpBtn.classList.remove("button-active");
@@ -93,7 +94,8 @@ signUpBtn.addEventListener("touchstart", () => {
       startInterval();
     } else {
       clearInterval(intervalId);
-      iframe.make();
+      page.showIframe();
+      iframe.create();
     }
   }
 });
@@ -105,16 +107,13 @@ signUpBtn.addEventListener("touchstart", () => {
 //
 
 //window load 이후 배경음악 권한 허용 함수
-let AudioContext;
-let audioContext;
-
 //배경음악 디버깅 함수
 window.onload = function () {
   navigator.mediaDevices
     .getUserMedia({ audio: true })
     .then(() => {
-      AudioContext = window.AudioContext;
-      audioContext = new AudioContext();
+      const AudioContext = window.AudioContext;
+      const audioContext = new AudioContext();
       playSound(bgSound);
     })
     .catch((e) => {
@@ -136,7 +135,7 @@ function playSound(sound) {
 function startInterval() {
   switch (page.order) {
     case 1:
-      page.order++;
+      //page.order++;
       page.gofirst();
       break;
     case 2:
