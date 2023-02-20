@@ -9,10 +9,10 @@
     />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="bubble.css" />
-    <link rel=”manifest” href=”manifest.json”>
     <script type="module" src="main.js" defer></script>
-    <script src="serviceWorker.js"></script>
-    <title>ORGANON</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fff">
+    <title>ORGANON-tablet</title>
   </head>
   <body oncontextmenu="return false;">
 
@@ -153,5 +153,15 @@
       </div>
     </div>
   </div>
+  <script>
+    if ("serviceWorker" in navigator) {
+  try {
+    navigator.serviceWorker.register("./serviceWorker.js");
+    console.log("Service Worker Registered");
+  } catch (error) {
+    console.log("Service Worker Registration Failed");
+  }
+}
+  </script>
   </body>
 </html>
