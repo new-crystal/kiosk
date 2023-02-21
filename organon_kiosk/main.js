@@ -9,9 +9,6 @@ const iframe = new Iframe();
 //비눗방울
 const bubbles = document.querySelectorAll(".bubble");
 
-//배경음악
-const bgSound = new Audio("./sound/bg.mp3");
-
 //clearInterval을 하기 위한 setInterval Id
 let intervalId = null;
 
@@ -28,6 +25,28 @@ document.addEventListener(
   },
   false
 );
+
+function playAudio() {
+  const audio = document.querySelector("#bgmAudio");
+  const source = document.createElement("source");
+  source.setAttribute("src", "./sound/bg.mp3");
+  source.setAttribute("type", "audio/mp3");
+  audio.appendChild(source);
+  console.log(audio);
+}
+//window load 이후 배경음악 재생 함수
+// window.onload = () => {
+//   playAudio();
+//   // const audio = document.querySelector("#bgmAudio");
+//   // const source = document.createElement("source");
+//   // source.setAttribute("src", "./sound/bg.mp3");
+//   // source.setAttribute("type", "audio/mp3");
+//   // audio.appendChild(source);
+//   // audio.setAttribute("autoplay", "");
+//   {
+//     /* <source src="./sound/bg.mp3" type="audio/mp3">  */
+//   }
+// };
 
 //닫기 버튼 이벤트 리스너
 closeBtn.addEventListener("touchstart", () => {
@@ -100,36 +119,6 @@ signUpBtn.addEventListener("touchstart", () => {
   }
 });
 
-//footer-button 터치 이벤트 함수
-//home -> 처음으로 버튼 -> gofirstPage() 함수 실행
-//sign-up -> 회원가입 버튼 -> MakeSignUp() 함수 실행
-//button-active -> 버튼 애니메이션
-//
-
-//window load 이후 배경음악 권한 허용 함수
-//배경음악 디버깅 함수
-window.onload = function () {
-  navigator.mediaDevices
-    .getUserMedia({ audio: true })
-    .then(() => {
-      const AudioContext = window.AudioContext;
-      const audioContext = new AudioContext();
-      playSound(bgSound);
-    })
-    .catch((e) => {
-      console.error(`Audio permissions denied: ${e}`);
-    });
-};
-
-//배경음악 재생함수
-function playSound(sound) {
-  const bgsong = sound.play();
-  sound.loop = true;
-  if (bgsong !== undefined) {
-    bgsong;
-  }
-}
-
 //interval 반복 될 함수
 //order을 받아 순서대로 진행
 function startInterval() {
@@ -143,7 +132,7 @@ function startInterval() {
       page.goSecond();
       break;
     case 3:
-      // page.order++;
+      page.order++;
       page.goThird();
       break;
     case 4:
@@ -158,5 +147,6 @@ function interval() {
   intervalId = setInterval(startInterval, 7000);
 }
 
+playAudio();
 startInterval();
 interval();
