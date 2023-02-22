@@ -183,38 +183,8 @@ const home = document.querySelector(".home");
 const signUpBtn = document.querySelector(".sign-up");
 const closeBtn = document.querySelector(".close-btn");
 
-//window load 이후 배경음악 권한 허용 함수
-let AudioContext;
-let audioContext;
-
-//배경음악 디버깅 함수
-window.onload = function () {
-  const bgSound = new Audio("../sound/bg.mp3");
-  console.log(bgSound);
-  navigator.mediaDevices
-    .getUserMedia({ audio: true })
-    .then(() => {
-      AudioContext = window.AudioContext;
-      audioContext = new AudioContext();
-      playSound(bgSound);
-    })
-    .catch((e) => {
-      console.error(`Audio permissions denied: ${e}`);
-    });
-};
-
-//배경음악 재생함수
-function playSound(sound) {
-  const bgsong = sound.play();
-  sound.loop = true;
-  if (bgsong !== undefined) {
-    bgsong;
-  }
-}
-
 //윈도우가 로드됐을 때 배경음악 재생함수 실행
 window.onload = () => {
-  //playBackGroundAudio();
   startInterval();
   interval();
 };
