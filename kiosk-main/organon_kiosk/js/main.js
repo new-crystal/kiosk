@@ -183,19 +183,15 @@ const home = document.querySelector(".home");
 const signUpBtn = document.querySelector(".sign-up");
 const closeBtn = document.querySelector(".close-btn");
 
-//window load 이후 배경음악 권한 허용 함수
-let AudioContext;
-let audioContext;
-
 //배경음악 디버깅 함수
 window.onload = function () {
-  const bgSound = new Audio("../sound/bg.mp3");
-  console.log(bgSound);
+  //배경음악
+  const bgSound = new Audio("./sound/bg.mp3");
   navigator.mediaDevices
     .getUserMedia({ audio: true })
     .then(() => {
-      AudioContext = window.AudioContext;
-      audioContext = new AudioContext();
+      let AudioContext = window.AudioContext;
+      let audioContext = new AudioContext();
       playSound(bgSound);
     })
     .catch((e) => {
@@ -211,13 +207,6 @@ function playSound(sound) {
     bgsong;
   }
 }
-
-//윈도우가 로드됐을 때 배경음악 재생함수 실행
-window.onload = () => {
-  //playBackGroundAudio();
-  startInterval();
-  interval();
-};
 
 //마우스 우클릭 방지 이벤트
 document.addEventListener(
@@ -334,3 +323,6 @@ function startInterval() {
 function interval() {
   intervalId = setInterval(startInterval, 7000);
 }
+
+startInterval();
+interval();
