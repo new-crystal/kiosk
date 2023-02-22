@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="bubble.css" />
+    <script type="module" src="main.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fff">
+    <title>ORGANON-tablet</title>
+  </head>
+  <body oncontextmenu="return false;">
+
+    <div class="container">
+      <!-- bubble animation-->
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <!-- first-page -->
+
+        <div class="inner-wrap">
+          <div class="homepage">
+            <div class="first-animation-down">
+              <img class="text" alt="img1" src="./img/img1-1.png" />
+            </div>
+              <img class="header-logo" alt="logo" src="./img/logo.png" />
+              <img class="computer" alt="computer" src="./img/computer.png"/>
+          </div>
+        </div>
+
+      <!-- second-page -->
+
+        <div class="inner-wrap">
+          <div class="second-page page-hidden">
+            <div class="second-text-box">
+              <img class="text-1" alt="img2-1" src="./img/img2-1.png" />
+              <img class="text-2" alt="img2-2" src="./img/img2-2.png" />
+            </div>
+            <img
+              class="second-bottom"
+              alt="second-bottom"
+              src="./img/img2.png"
+            />
+          </div>
+        </div>
+
+      <!-- third-page -->
+     
+        <div class="inner-wrap">
+          <div class="third-page page-hidden">
+            <img class="header-img third-header-img" alt="img3-1" src="./img/img3-1.png" />
+            <div class="third-img-box">
+              <img class="third-1" alt="img3-2" src="./img/img3-2.png" />
+              <img class="third-2" alt="img3-3" src="./img/img3-3.png" />
+            </div>
+          </div>
+        </div>
+
+      <!-- fourth-page -->
+    
+        <div class="inner-wrap">
+          <div class="fourth-page page-hidden">
+            <img
+              class="header-img fourth-header-img"
+              alt="img3-1"
+              src="./img/img3-1.png"
+            />
+            <div class="fourth-img-box">
+              <img class="fourth-1" alt="img4-1" src="./img/img4-1.png" />
+              <img class="fourth-2" alt="img4-2" src="./img/img4-2.png" />
+              <img class="fourth-3" alt="img4-3" src="./img/img4-3.png" />
+            </div>
+          </div>
+        </div>
+
+            <!--iframe -->
+    
+        <div class="inner-wrap">
+          <div class="iframe-page iframe-page-hidden">
+            <div class="iframe-box">
+              
+              <button class="close-btn">
+                <img class="close-btn-img" alt="close" src="./img/closed.png" /> 닫기
+              </button>
+            </div>
+          </div>
+        </div>
+ 
+      <!-- footer -->
+      <div class="btn-box">
+        <button class="home">
+          <img id="home" class="btn-img" alt="home" src="./img/btn1.png" />
+        </button>
+        <button class="sign-up">
+          <img
+            id="sign-up"
+            class="btn-img"
+            alt="sign-up"
+            src="./img/btn2.png"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    if ("serviceWorker" in navigator) {
+  try {
+    navigator.serviceWorker.register("./serviceWorker.js");
+    console.log("Service Worker Registered");
+  } catch (error) {
+    console.log("Service Worker Registration Failed");
+  }
+}
+  </script>
+  </body>
+</html>
