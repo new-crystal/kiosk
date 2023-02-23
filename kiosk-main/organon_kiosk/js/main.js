@@ -190,8 +190,8 @@ window.onload = function () {
   navigator.mediaDevices
     .getUserMedia({ audio: true })
     .then(() => {
-      let AudioContext = window.AudioContext;
-      let audioContext = new AudioContext();
+      const AudioContext = window.AudioContext;
+      const audioContext = new AudioContext();
       playSound(bgSound);
     })
     .catch((e) => {
